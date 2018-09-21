@@ -1,37 +1,23 @@
 <template>
-  <section class="section-ews16">
+  <section :class="'section-ews21 '+isCaseA?'case-a':'' + isCaseB?'case-b':''">
 
     <div class="container">
-
-      <h2 class="section-title">We Serve Your Needs In</h2>
       <div class="row">
 
-        <div class="col-6 col-lg-3" v-for="(service, index) in services" :key="service.title">
-          <div class="block block-active">
-            <div class="block-content">
-              <div :class="'block-icon icon-'+index"></div>
-              <div class="block-title" v-html="service.title"></div>
-              <p class="block-text" v-html="service.article"></p>
-            </div>
-            <div class="block-modal-trigger hidden-md-up" data-toggle="modal" :data-target="'#block-modal-'+index"></div>
-          </div>
-          <div class="modal service-modal block-modal fade" :id="'block-modal'+index" data-backdrop="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <button type="button" class="close float-right" data-dismiss="modal" aria-label="Close">
-                  <span class="ion-ios-close"></span>
-                </button>
-                <div class="modal-body">
-                  <div class="block-title" v-html="service.title"></div>
-                  <p class="block-text" v-html="service.article"></p>
-                </div>
-              </div>
-            </div>
-          </div>
+
+        <div class="col-md-5 offset-md-2 btn-center">
+          <button id="newProject" class="btn btn-pink btn-rounded btn-shadow btn-lg">
+            {{buttonCaption1CaseA}}
+            <!--{{#if isCaseB }}{{buttonCaption1CaseB}}{{/if}}-->
+          </button>
+        </div>
+        <div class="col-md-5 btn-center">
+          <a href="/services" class="btn btn-cyan btn-rounded btn-shadow btn-lg">{{buttonCaption2}}</a>
         </div>
 
       </div>
     </div>
+
   </section>
 </template>
 
@@ -40,31 +26,11 @@
   export default {
     data () {
       return {
-        services: [{
-          title: "Software Project <br/> Outsourcing",
-          article: "Get your existing project improved or implement your idea with our full software development lifecycle process, starting with discovery and prototyping and moving all the way to engineering, deployment and maintenance."
-        },{
-          title: "Development <br/> & Operations",
-          article: "Accelerate your software product development and increase time to market with our DevOps service."
-        },{
-          title: "Efficient <br/> Dedicated Team",
-          article: "We provide fully dedicated, scalable and stable teams, ready to join your project on a remote basis."
-        },{
-          title: "Quality Assurance",
-          article: "Take advantage of the perfect software product thanks to our thorough quality assurance process. We apply both manual and automated testing approaches."
-        },{
-          title: "Architecture <br/> Consulting and Design",
-          article: "Our experienced Software Architects provide consulting services for existing and new systems."
-        },{
-          title: "Software Development <br/> Process Audit",
-          article: "Profit from your project’s audit, which will show you how to decrease time to market and expenses, increase productivity and visibility and improve quality and predictability of project outcomes."
-        },{
-          title: "UX & UI <br/> Consulting Services",
-          article: "Our User Interface and User Experience consulting services help you deliver both an excellent experience to your customers and a competitive product."
-        },{
-          title: "Cyber Security <br/> Services",
-          article: "Ensure the safety of your product thanks to our certified, dedicated Security Engineers who provide continual threat monitoring and customized guidance 24/7/365."
-        }]
+        buttonCaption1CaseA: "Schedule My Custom Consultation",
+        buttonCaption1CaseB: "Let’s start a new project together!",
+        buttonCaption2: "More info",
+        isCaseA: false,
+        isCaseB: true,
       }
     },
     computed: {

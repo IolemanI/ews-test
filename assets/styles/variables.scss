@@ -1,0 +1,115 @@
+$site-max-width: 960px;
+$grid-gutter-width-base: 20px;
+
+$grid-breakpoints: (
+  xs: 0px,
+  sm: 480px,
+  md: 768px,
+  lg: $site-max-width
+);
+
+$xs: 320px;
+$sm: 480px;
+$md: 768px;
+$lg: $site-max-width;
+
+$container-max-widths: (
+  sm: 420px,
+  md: 720px,
+  lg: $site-max-width
+);
+
+$margin-0-auto: 0 auto;
+
+$white: #FFF;
+$black: #000;
+$slick-dots: #C9C9C9;
+$body-bg: $white;
+$grey-bg: #F0F1F4;
+
+$color-secondary: #13A6E1;
+$color-primary: #0B314F;
+$color-linkedin: #0083BE;
+$color-font: #595959;
+$color-pink: #EE3361;
+$color-cyan: #2DB7C9;
+
+$brand-danger: $color-pink;
+$brand-primary: $color-primary;
+
+$ionicons-font-path:  "../../node_modules/ionicons/dist/fonts" !default;
+
+$empty-content: ' ';
+
+$font-family-base: 'Lato', sans-serif;
+$font-weight-bold: 900;
+
+$headings-font-family: 'Roboto', sans-serif;
+$headings-color: $color-primary;
+$headings-font-weight: 700;
+$headings-margin-bottom: 70px;
+
+$font-size-h1: 3.25rem;
+$font-size-h2: 1.85rem;
+
+$font-family-monospace: 'Cousine', monospace;
+
+// Header
+$header-inscroll-height: 90px;
+
+$nav-span-padding: 28px 0;
+$nav-link-padding: 0;
+$nav-link-margin: 0 1.2rem 0;
+$caret-width: .3rem;
+
+$text-muted: #6D6D6D;
+$input-color-placeholder: #767676;
+
+$dropdown-padding-y: 0;
+$dropdown-bg: #FDFDFD;
+$dropdown-border-color: #98A8B5;
+$dropdown-link-hover-bg: transparent;
+
+$modal-md: 620px;
+$modal-backdrop-bg: $color-primary;
+$modal-backdrop-opacity: 0.9;
+
+$label-color: $color-font !default;
+$label-default-bg: $color-font !default;
+
+$btn-padding-x: 2.1rem;
+$btn-font-weight: bold;
+$btn-primary-border: $color-primary;
+
+$btn-secondary-bg: $color-secondary;
+$btn-secondary-color: $white;
+$btn-secondary-border: $color-secondary;
+
+$btn-padding-x-lg: 2.65rem;
+$btn-padding-y-lg: 1rem;
+
+$input-border-focus: #0E3451;
+$input-border-radius: 3px;
+$label-success-bg: #E1E1E1 !default;
+
+$default-animation-speed: 500ms;
+
+$input-bg:  #F7F5F5 !default;
+$input-border: 1px solid #E1E1E1 !default;
+$input-border-radius: 5px !default;
+$custom-checkbox-radius: 2px;
+$input-padding-x: 15px;
+
+$form-group-margin-bottom: 7px;
+$form-icon-success-color: $color-secondary;
+
+$custom-control-focus-indicator-box-shadow: 0 0 0 1px $body-bg, 0 0 0 2px $color-secondary !default;
+
+$dropdown-height: 3rem;
+$dropdown-icon-width: 2.8rem;
+$arrow-up: "\f3d0";
+$arrow-down: "\f3d8";
+$add-plus: "\F101";
+$plus: "\f273";
+$margin-0: 0;
+$margin-top-30: 30px;

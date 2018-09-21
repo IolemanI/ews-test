@@ -98,21 +98,7 @@
       }
     },
     computed: {
-      isSlide0: function(){
-        return this.slide == 0 ? 'active' : ''
-      },
-      isSlide1: function(){
-        return this.slide == 1 ? 'active' : ''
-      },
-      isSlide2: function(){
-        return this.slide == 2 ? 'active' : ''
-      },
-      isSlide3: function(){
-        return this.slide == 3 ? 'active' : ''
-      },
-      isSlide4: function(){
-        return this.slide == 4 ? 'active' : ''
-      },
+
     },
     methods: {
       onSlideStart (slide) {

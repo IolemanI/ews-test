@@ -1,5 +1,5 @@
 <template>
-  <section :class="'section-ews21 '+isCaseA?'case-a':'' + isCaseB?'case-b':''">
+  <section :class="isCaseA?'section-ews21 case-a':'section-ews21' + isCaseB?'section-ews21 case-b':'section-ews21'">
 
     <div class="container">
       <div class="row">
@@ -56,7 +56,7 @@
     display: none;
   }
 
-  .section-ews16 {
+  .section-ews21 {
     margin-top: 5rem;
     margin-bottom: 70px;
   }

@@ -16,6 +16,8 @@ module.exports = {
   },
   css: [
     '~assets/styles/index.scss',
+    '~assets/styles/general.scss',
+    '~assets/styles/variables.scss',
     'bootstrap-vue/dist/bootstrap-vue.css'
   ],
   plugins: [

@@ -1,3 +1,5 @@
+@import "~/assets/styles/variables.scss";
+
 .btn.btn-rounded {
   border-radius: 50px;
 }
@@ -587,6 +589,19 @@ ul.list-arrow-right {
 .file-required {
   color: $color-pink;
 }
+
+.hidden-md-up{
+  @media(min-width: $md) {
+    display: none;
+  }
+}
+
+.hidden-sm-down{
+  @media(max-width: $sm) {
+    display: none;
+  }
+}
+
 
 @media(max-width: $sm) { // sass-lint:disable-line mixins-before-declarations
   .close-icon {

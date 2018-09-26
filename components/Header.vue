@@ -54,6 +54,8 @@
 </script>
 
 <style scoped lang="scss">
+  @import "~/assets/styles/index.scss";
+
   $header-animation-speed: 500ms;
   header{
     background-color: transparent !important;

@@ -15,10 +15,12 @@ module.exports = {
     ]
   },
   css: [
-    '~assets/styles/index.scss',
-    '~assets/styles/general.scss',
-    '~assets/styles/variables.scss',
-    'bootstrap-vue/dist/bootstrap-vue.css'
+    { src: '~assets/styles/index.scss', lang: 'scss' },
+    "@typopro/web-bebas-neue/TypoPRO-BebasNeue.css"
+    // '~assets/styles/general.scss',
+    // '~assets/styles/variables.scss',
+    // 'bootstrap-vue/dist/bootstrap-vue.css',
+    // 'bootstrap/scss/bootstrap.scss'
   ],
   plugins: [
     'plugins/bootstrap-vue.js'

@@ -782,6 +782,7 @@
       margin-right: 6px;
       margin-left: 6px;
       border-radius: 100%;
+      flex: 0 0 auto;
 
       &.active{
         background: #20abe2;

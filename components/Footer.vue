@@ -188,7 +188,7 @@
   .b-footer-menu {
     list-style: none;
     font-size: $font-size-sm;
-    padding-left: $spacer-x * 2;
+    padding-left: $spacer * 2;
     @media(max-width: $sm) {
       margin-bottom: 0;
     }
@@ -220,11 +220,11 @@
 
       ul {
         list-style: none;
-        padding-top: $spacer-y / 2;
-        padding-left: $spacer-x / 2;
+        padding-top: $spacer / 2;
+        padding-left: $spacer / 2;
 
         li {
-          padding: $spacer-y / 2 0;
+          padding: $spacer / 2 0;
         }
         a {
           color: $footer-text-color;
@@ -274,7 +274,7 @@
 
   .b-social-links {
     list-style: none;
-    padding: $spacer-y * 1.3  0 0;
+    padding: $spacer * 1.3  0 0;
     text-align: center;
 
     li {
@@ -309,7 +309,7 @@
     border-top: 1px solid $footer-hr-color;
     border-bottom: 1px solid $footer-hr-color;
     line-height: $line-height-base;
-    padding: $spacer-y 0;
+    padding: $spacer 0;
     font-size: 14px;
     display: block;
 
@@ -322,12 +322,12 @@
       line-height: 1;
       font-size: $font-size-lg;
       color: $footer-text-color;
-      margin-right: $spacer-x / 3;
+      margin-right: $spacer / 3;
     }
   }
 
   .b-forstartups{
-    padding: $spacer-y * 1.5 0;
+    padding: $spacer * 1.5 0;
     a{
       background: $white;
       color: $color-primary;

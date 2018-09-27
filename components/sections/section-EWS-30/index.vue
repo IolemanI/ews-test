@@ -1,61 +1,104 @@
 <template>
-  <section class="section-ews27">
+  <section class="section-ews30">
+    <div class="container">
+      <h2 class="section-title">{{title}}</h2>
+      <div class="section-subtitle">{{subtitle}}</div>
 
-    <div class="bg">
-      <div class="container">
-        <h2 class="title">Clients Testimonials</h2>
-        <div class="row hidden-sm-down">
-          <div class="carousel-container offset-md-2 col-md-8">
-            <div id="feedbackCarousel" class="carousel slide" @mouseover="mouseOver" @mouseout="mouseOut">
-              <div class="carousel-inner testimonials" role="listbox">
-
-                <div class="carousel-item"
-                     v-for="(review, index) in reviews"
-                     :id="'carousel_item_'+index"
-                     :key="review.name">
-                  <div class="feedback">
-                    <div class="feedback-icon"><img :src="review.mainImage" alt=""/></div>
-                    <div class="feedback-name">{{review.name}}</div>
-                    <div class="feedback-company">{{review.company}}</div>
-                    <div class="feedback-text" v-html="review.text"></div>
-                    <a :href="review.link" target="_blank" class="feedback-link">
-                      Read more
-                      <i class="ion-ios-arrow-forward"></i>
-                    </a>
-                  </div>
-                </div>
-
-                <a class="carousel-control-prev visible" href="#feedbackCarousel"
-                   @click="prevSlide"
-                   role="button"
-                   data-slide="prev">
-                  <div class="circle">
-                    <i class="ion-ios-arrow-back"></i>
-                    <span class="sr-only">Previous</span>
-                  </div>
-                </a>
-                <a class="carousel-control-next visible" href="#feedbackCarousel"
-                   @click="nextSlide"
-                   role="button"
-                   data-slide="next">
-                  <div class="circle">
-                    <i class="ion-ios-arrow-forward"></i>
-                    <span class="sr-only">Next</span>
-                  </div>
-                </a>
+      <div class="hidden-sm-down">
+        <div class="row">
+          <div class="offset-md-1 col-md-10 offset-0 col-12">
+            <div class="menu-wrapper">
+              <div class="menu">
+                <ul class="row">
+                  <li class="col-md" v-for="category in categories" :key="category.category" :data-category="category.category">
+                    <span>{{category.caption}}</span>
+                  </li>
+                </ul>
+                <div class="lamp"></div>
               </div>
             </div>
           </div>
         </div>
 
-        <div class="hidden-md-up">
-          <div class="slider">
+        <div data-interval="false" class="blog-carousel">
 
-          </div>
+          <b-carousel id="blog_carousel"
+                      style=""
+                      indicators
+                      img-width="100"
+                      img-height="280"
+                      :interval=0
+                      background="#000"
+                      v-model="slide">
+
+            <b-carousel-slide v-for="slide in blogs" :key="slide[0].id">
+              <div class="blog-slide">
+
+                  <div class="post card" v-for="blog in slide" :key="blog.url" :data-category="blog.category">
+                    <div class="card-img-top image" style="background-image: url(/images/banners/banner_startup_wide.jpg)"></div>
+                    <div class="card-block desc">
+                      <p class="card-title title">
+                        {{blog.title}}
+                      </p>
+                      <p class="card-text data">
+                        <small class="text-muted">
+                          <span class="ion-ios-time-outline"></span> {{blog.pubDate}}
+                        </small>
+                      </p>
+                    </div>
+
+                    <div class="post-hover">
+                      <div class="card-block">
+                        <a :href="'/blog/'+blog.url">
+                          <p class="card-title hover-title">{{blog.title}}</p>
+                          <p class="card-tags">
+                            {{blog.tags}}
+                          </p>
+                          <p class="card-text text">
+                            {{blog.description}}
+                          </p>
+                          <div class="opacity-bg"></div>
+                          <span class="card-text read-more">
+                            Read more
+                            <span class="arrow ion-ios-arrow-forward"></span>
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+
+              </div>
+            </b-carousel-slide>
+
+          </b-carousel>
+
         </div>
       </div>
-    </div>
 
+      <div class="hidden-md-up">
+        <div class="row">
+          <div class="col-12">
+            <div class="menu-wrapper">
+              <div class="menu">
+                <ul class="row">
+                  <li class="col-md mobile-item" v-for="category in categories" :key="category.category" :data-category="category.category">
+                    <span>{{category.caption}}</span>
+                  </li>
+                </ul>
+                <div class="mobile-lamp"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-interval="false" class="blog-carousel-mobile">
+        </div>
+      </div>
+
+      <div class="row">
+        <a class="btn btn-rounded btn-outline-primary btn-view" href="/blog">{{view}}</a>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -65,14 +108,44 @@
       return {
         slide: 1,
         sliding: null,
-        carouselItems: null,
-        slideInterval: 4000,
-        isPaused: false
+        itemsPerSlide: 3,
+        title: 'Blog',
+        subtitle: 'Our insightful ideas and relevant industry news',
+        categories: [
+          {
+            category: "blogs",
+            caption: "Blog"
+          },
+          {
+            category: "news",
+            caption: "News"
+          },
+          {
+            category: "guides",
+            caption: "Guides"
+          },
+          {
+            category: "events",
+            caption: "Events"
+          },
+          {
+            category: "experiments",
+            caption: "Experiments"
+          }
+        ],
+        view: "View all"
       }
     },
     computed: {
-      reviews () {
-        return this.$store.state.reviews.list
+      blogs () {
+        let blogs = this.$store.state.blogs.list
+        let tempBlogs = [];
+
+        for (let i = 0; i < blogs.length; i += this.itemsPerSlide) {
+          tempBlogs.push(blogs.slice(i, i + this.itemsPerSlide))
+        }
+
+        return tempBlogs
       }
     },
     watch: {
@@ -81,506 +154,456 @@
       }
     },
     methods: {
-      mouseOver: function () {
-        this.isPaused = true
-      },
-      mouseOut: function () {
-        this.isPaused = false
-      },
-      nextSlide: function () {
-        if(this.slide >= this.carouselItems.length)
-          this.slide = 1
-        else
-          this.slide += 1
-      },
-      prevSlide: function () {
-        if(this.slide > 1)
-          this.slide -= 1
-        else
-          this.slide = this.carouselItems.length
-      },
       setSlide: function (slide) {
-
-        for(let i = 0; i < this.carouselItems.length; i++){
-          this.carouselItems[i].classList.remove('active', 'left', 'right')
-        }
-
-        this.carouselItems[slide-1].classList.add('active')
-
-        if(slide === 1){
-          this.carouselItems[this.carouselItems.length-1].classList.add('left')
-          this.carouselItems[slide].classList.add('right')
-        }else if(slide === this.carouselItems.length){
-          this.carouselItems[slide-2].classList.add('left')
-          this.carouselItems[0].classList.add('right')
-        }else{
-          this.carouselItems[slide-2].classList.add('left')
-          this.carouselItems[slide].classList.add('right')
-        }
 
       }
     },
     mounted: function () {
-      this.carouselItems = document.querySelector('.carousel-inner.testimonials').getElementsByClassName('carousel-item')
-      this.setSlide(this.slide)
-
-      let slideInterval = setInterval(()=>{
-
-        if(!this.isPaused){
-          if(this.slide < this.carouselItems.length)
-            this.slide += 1
-          else
-            this.slide = 1
-        }
-
-      }, this.slideInterval)
 
     }
   }
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/variables.scss";
+  @import "~/assets/styles/index.scss";
 
-  $feedback-icon-size: 6.3rem;
-  $feedback-icon-size-sm: 4.5rem;
-  $feedback-icon-margin: -$feedback-icon-size/2 auto 1.7rem;
-  $button-circle-radius: 2.1rem;
-  $feedback-height: 25rem;
-  $section-height: 45.8rem;
-  $animation-time: .4s;
-  $controls-animation-time: .2s;
-  $feedback-link-arrow-size: 1rem;
-  $scale-image: 1;
-  $center-image-width: 520px * $scale-image;
-  $half-width: ($center-image-width / 2);
-  $arrow-size: 32px;
-  $arrow-padding-x: 36px;
-  $slick-prev-character: "\F3CF";
-  $slick-next-character: "\F3D1";
-  $slick-dot-color: #D6D6D6 !default;
-  $slick-dot-color-active: $color-secondary !default;
-  $slick-dot-size: 9px !default;
+  $text-color-hover: #FFFFFF;
+  $text-color-active: #FFFFFF;
+  $blog-menu-subtitle-color: #212121;
+  $carousel-active-navigation: #20ABE2;
+  $blog-menu-bg: #F2F3F6;
+  $carousel-navigation: #D6D6D6;
+  $carousel-post-border-color: #EDEFEF;
+  $carousel-post-data-color: #5B5B5B;
+  $carousel-post-hover-tags-color: #71C9ED;
+  $carousel-post-hover-bg-gradient-0: rgba(19, 166, 225, .1);
+  $carousel-post-hover-bg-gradient-80: rgba(19, 166, 225, .8);
+  $carousel-post-hover-bg-gradient-90: rgb(19, 166, 225);
+  $carousel-post-hover-bg-gradient-100: rgb(19, 166, 225);
+  $slick-dot-margin:  0 0.4rem;
+  $post-margin: 0 .15rem;
+  $margin-1-auto: 1rem auto;
+  $margin-1-5-auto: 2rem auto 0;
 
-  .section-ews27 {
-
-  }
-
-
-  .bg {
-    padding-top: 5.8rem;
-    background-color: #F2F3F6;
-    height: $section-height;
-    margin-bottom: -$headings-margin-bottom;
+  .section-ews30 {
+    padding-top: 5.3rem;
 
     @media(max-width: $sm) {
-      height: auto;
-      padding-bottom: 50px;
+      margin-bottom: 40px;
     }
   }
 
-  .title {
+  .section-title {
     text-align: center;
-    font-weight: 700;
-    margin-bottom: 6.2rem;
-    @media(max-width: $sm) {
-      margin-bottom: 4rem;
-    }
+    font-weight: bold;
+    font-family: $headings-font-family;
+    color: $color-primary;
   }
 
-  .carousel-inner {
-    overflow: visible;
-    height: $feedback-height;
-
-    @media(max-width: $sm) {
-      height: 45rem;
-    }
-  }
-
-  @media(max-width: $xs) {
-    .slick-slide.slick-center .feedback {
-      height: 100%;
-    }
-
-    .slick-slide.slick-center .feedback {
-      .feedback-text, p {
-        padding: 0 1rem;
-        white-space: normal;
-        overflow: auto;
-        text-overflow: initial;
-      }
-    }
-  }
-
-
-  .carousel-item {
-    display: block;
-    position: absolute;
-    visibility: hidden;
-    transition: transform $animation-time ease-out;
-    min-height: $feedback-height;
+  .section-subtitle {
     text-align: center;
-    background: white;
-    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.08);
-
-    @media(max-width: $sm) {
-      width: 90%;
-    }
-
-  }
-  .feedback {
-    padding-bottom: 2rem;
-    @media (min-width: 0) and (max-width: $xs) {
-      height: 0;
-    }
-
-    .feedback-icon {
-      margin: $feedback-icon-margin;
-      transition: opacity $animation-time;
-      opacity: 0;
-      height: $feedback-icon-size;
-      width: $feedback-icon-size;
-      overflow: hidden;
-      border-radius: 50%;
-      box-shadow: 0 0 5px 2px rgba(0,0,0,0.05);
-      @media(max-width: $sm) {
-        height: $feedback-icon-size-sm;
-        width: $feedback-icon-size-sm;
-      }
-
-      img{
-        width: $feedback-icon-size;
-        @media(max-width: $sm) {
-          width: $feedback-icon-size-sm;
-        }
-      }
-    }
-
-    .feedback-name {
-      color: $color-primary;
-      font-weight: 700;
-      margin-bottom: 0.3rem
-    }
-
-    .feedback-company {
-      color: $color-font;
-      font-weight: 700;
-      font-style: italic;
-      margin-bottom: 1.3rem;
-    }
-
-    .feedback-text {
-      color: black;
-      line-height: 1.8rem;
-      padding: 0 5rem;
-      margin-bottom: 1rem;
-
-      @media(max-width: $sm) {
-        padding: 0 1rem;
-      }
-
-      @media (min-width: 0) and (max-width: $xs) {
-        p {
-          white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-    }
-
-    .feedback-link {
-      color: $color-primary;
-      i {
-        display: inline-block;
-        text-align: center;
-        line-height: $feedback-link-arrow-size;
-        height: $feedback-link-arrow-size;
-        width: $feedback-link-arrow-size;
-        color: white;
-        background: $color-primary;
-        border-radius: 50%;
-        font-size: 0.8rem;
-      }
-    }
+    font-size: 1.125rem;
+    margin-top: -3rem;
+    padding-bottom: 2.8rem;
+    font-family: $font-family-base;
+    color: $blog-menu-subtitle-color;
   }
 
-  .carousel-container {
-    @media(max-width: $sm) {
-      padding: 0 3rem;
-    }
-  }
+  .menu-wrapper {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    margin-bottom: 3.4rem;
 
-  .carousel-item.active {
-    visibility: visible;
-    z-index: 2;
-    .feedback {
-      .feedback-icon {
-        opacity: 1;
-      }
-    }
-  }
-
-  .carousel-item-prev, .active.carousel-item-left {
-    transform: translate3d(-50%,0,0);
-  }
-
-  .carousel-item-next, .active.carousel-item-right {
-    transform: translate3d(50%, 0, 0);
-  }
-
-  .carousel-item.left {
-    visibility: visible;
-    transform: translateX(-6.25rem) scale(0.85);
-
-    @media(max-width: $sm) {
-      transform: scale(0.85);
-    }
-  }
-
-  .carousel-item.right {
-    visibility: visible;
-    transform: translateX(6.25rem) scale(0.85);
-    @media(max-width: $sm) {
-      transform: scale(0.85);
-    }
-  }
-
-  .carousel-item-next, .carousel-item-prev {
-    z-index: 1;
-  }
-
-  .circle {
-    height: $button-circle-radius * 2;
-    width: $button-circle-radius;
-    background-color: $color-secondary;
-    i {
-      line-height: $button-circle-radius * 2;
-    }
-  }
-
-  .carousel-control-next, .carousel-control-prev {
-    width: auto;
-    opacity: 0;
-    i {
-      font-size: 1.6rem;
-    }
-  }
-
-  .carousel-control-next.visible, .carousel-control-prev.visible {
-    opacity: 1;
-    transition: all 0.2s $animation-time;
-    transform: translateX(0);
-  }
-
-  .carousel-control-prev {
-    transform: translateX($button-circle-radius*2);
-    left: -$button-circle-radius ;
-    justify-content: flex-end;
-    .circle {
-      border-top-left-radius: $button-circle-radius * 2;
-      border-bottom-left-radius: $button-circle-radius * 2;
-    }
-  }
-
-  .carousel-control-next {
-    transform: translateX(-$button-circle-radius*2);
-    right: -$button-circle-radius ;
-    justify-content: flex-start;
-    .circle {
-      border-top-right-radius: $button-circle-radius * 2;
-      border-bottom-right-radius: $button-circle-radius * 2;
-    }
-  }
-
-  // Slick
-
-  .slick-slider {
-    padding: 70px 0;
-
-    @media(max-width: $sm) {
-      padding: 70px 10px;
-    }
-
-  }
-  .slick-list {
-    overflow: visible;
-  }
-  .slider {
-    .carousel-item {
+    .menu {
       position: relative;
-      box-shadow: none;
-      background: transparent;
-      visibility: visible;
-      outline: none;
+      width: 100%;
+      min-height: 2.1rem;
+      border-radius: 2.5rem;
+      background-color: $blog-menu-bg;
+
+      .width-40-percent {
+        @media(max-width: $sm) {
+          width: 40%;
+        }
+      }
+
+      ul {
+        list-style: none;
+        position: relative;
+        padding: 0;
+        width: 100%;
+        margin-right: 0;
+        margin-left: 0;
+
+        li {
+          font-family: $font-family-base;
+          line-height: 2.1rem;
+          text-align: center;
+          font-size: 1rem;
+          float: left;
+          cursor: pointer;
+          padding: 0;
+
+          span {
+            z-index: 2;
+            font-size: 1rem;
+            position: relative;
+          }
+        }
+
+        .active {
+          transition: all .3s linear;
+          -o-transition: all .3s linear;
+          -moz-transition: all .3s linear;
+          -webkit-transition: all .3s linear;
+          color: $text-color-active;
+        }
+      }
+
+      .lamp {
+        position: absolute;
+        top: 0;
+        height: 2.1rem;
+        z-index: 1;
+        border-radius: 2.5rem;
+        background-color: $color-secondary;
+        transition: all .2s linear;
+        -o-transition: all .2s linear;
+        -moz-transition: all .2s linear;
+        -webkit-transition: all .2s linear;
+      }
     }
   }
+
+  .image {
+    img {
+      width: 100%;
+      height: 11.5rem;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .post-hover {
+    display: none;
+    top: -12.5rem;
+    left: -3.12rem;
+    position: absolute;
+  }
+
   .slick-arrow {
-    display: block;
-    position: absolute;
-    height: $arrow-size;
-    width: $arrow-size;
-    line-height: 0;
-    font-size: 0;
-    cursor: pointer;
-    color: transparent;
-    top: 50%;
-    left: 50%;
-    padding: 0;
-    border: none;
-    outline: none;
-    //font-family: $ionicons-font-family;
-    z-index: 1;
-    background-color: $white;
-    border-radius: 100px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-
-    &:before {
-      font-size: 1rem;
-      color: $color-primary;
-      line-height: $arrow-size;
-      text-align: center;
-    }
-    &:hover, &:focus {
-      outline: none;
-      background: $color-primary;
-      box-shadow: 0 1px 3px rgba($white, 0.5);
-      &:before {
-        color: $white;
-        opacity: 1;
-      }
-    }
-
-    &.slick-prev {
-      display: none;
-      transform: translate(-$half-width - $arrow-size - $arrow-padding-x, 0);
-      [dir="rtl"] & {
-        transform: translate($half-width + $arrow-padding-x, 0);
-      }
-      &:before {
-        content: $slick-prev-character;
-        [dir="rtl"] & {
-          content: $slick-next-character;
-        }
-      }
-    }
-    &.slick-next {
-      transform: translate($half-width + $arrow-padding-x, 0);
-      [dir="rtl"] & {
-        transform: translate(-$half-width - $arrow-size - $arrow-padding-x, 0);
-      }
-      &:before {
-        content: $slick-next-character;
-        [dir="rtl"] & {
-          content: $slick-prev-character;
-        }
-      }
-    }
+    display: none;
   }
-  .slick-slide {
-    transition: all $default-animation-speed;
 
-    @media(max-width: $sm) {
-      padding-top: 1.6rem;
-    }
-
-    .feedback-icon {
-      transform: translateY(-50%);
-      margin-bottom: -1rem;
-    }
-    .feedback {
-      transform: scale(.9);
-      transition: transform $animation-time ease-out;
-      min-height: $feedback-height;
-      text-align: center;
-      background: white;
-      box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.08);
-    }
-
-    .feedback-text {
-      padding: 0 2rem;
-      color: $color-primary;
-    }
-    .feedback-company {
-      font-weight: normal;
-      color: #848484;
-    }
-
-    &.slick-center {
-      position: relative;
-      z-index: 1;
-
-      @media(max-width: $sm) {
-        padding-top: 0rem;
-      }
-
-      .feedback {
-        transform: scale($scale-image);
-
-        @media(max-width: $sm) {
-          margin-left: 0.7rem;
-          margin-right: 0.7rem;
-        }
-      }
-      .feedback-icon {
-        opacity: 1;
-      }
-    }
-  }
   .slick-dots {
-    $margin-value: 0;
-    display: block;
-    margin: $margin-value;
-    position: absolute;
-    bottom: 5px;
+    margin-top: 1.9rem;
     list-style: none;
     text-align: center;
     padding: 0;
-    width: 100%;
+
     li {
-      $margin-value: 0 5px;
       display: inline-block;
-      margin: $margin-value;
-      position: relative;
-      height: $slick-dot-size;
-      width: $slick-dot-size;
-      padding: 0;
-      cursor: pointer;
+      margin: $slick-dot-margin;
       button {
-        display: block;
-        border: 0;
-        height: $slick-dot-size;
-        width: $slick-dot-size;
-        outline: none;
-        line-height: 0;
+        padding: 0;
+        border: none;
+        width: 0.5rem;
+        height: 0.5rem;
+        background: $carousel-navigation;
+        color: transparent;
         font-size: 0;
-        background: transparent;
-        padding: 5px;
-        cursor: pointer;
-        &:hover, &:focus {
-          outline: none;
+        border-radius: 50%;
+      }
+    }
+
+    .slick-active {
+      button{
+        background: $carousel-active-navigation;
+      }
+    }
+  }
+
+  .blog-slide{
+    display: flex;
+  }
+
+  .card {
+    border-radius: 0;
+    border: 1px solid $carousel-post-border-color;
+  }
+
+  .post {
+    padding: 0;
+    height: 20rem;
+    overflow: hidden;
+    width: 100%;
+
+    a {
+      text-decoration: none;
+    }
+
+    .card-title {
+      display: -webkit-box;
+      overflow: hidden;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      max-height: 3rem;
+      font-family: $font-family-base;
+      font-weight: bold;
+      color: $color-primary;
+      margin-bottom: 0;
+    }
+
+    .data {
+      font-family: $font-family-base;
+      color: $carousel-post-data-color;
+
+      .text-muted {
+        span {
+          padding-right: 3px;
         }
-        &:before {
+      }
+    }
+
+    .desc {
+      padding: .9rem .8rem;
+    }
+
+    .image {
+      height: 13.12rem;
+      min-width: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .card-img-top {
+      border-radius: 0;
+    }
+
+    &:hover {
+      .card-block {
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+      }
+
+      .post-hover {
+        display: block;
+        width: 100%;
+        height: 20rem;
+        animation: show-post-hover;
+        animation-duration: .5s;
+        top: 0;
+        left: 0;
+        z-index: 3;
+        padding: .2rem .2rem 0 .6rem;
+        background-color: $color-secondary;
+        color: $text-color-hover;
+
+        .hover-title {
+          display: block;
+          max-height: 9rem;
+          overflow: visible;
+          color: $text-color-hover;
+          font-family: $font-family-base;
+          font-weight: bold;
+          margin-bottom: .45rem;
+        }
+
+        .text {
+          display: -webkit-box;
+          color: $text-color-hover;
+          line-height: 1.5rem;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 6;
+          font-size: .9rem;
+          margin-bottom: .8rem;
+          font-family: $font-family-base;
+          max-height: 7rem;
+        }
+
+        .opacity-bg {
+          width: 100%;
+          height: 8rem;
+          bottom: 2rem;
           position: absolute;
-          top: 0;
           left: 0;
-          content: $empty-content;
-          width: $slick-dot-size;
-          height: $slick-dot-size;
-          background-color: $slick-dot-color;
-          border-radius: 100px;
-          text-align: center;
-          color: $slick-dot-color;
-          -webkit-font-smoothing: antialiased;
-          -moz-osx-font-smoothing: grayscale;
+          background: linear-gradient(to bottom,
+            $carousel-post-hover-bg-gradient-0 0%,
+            $carousel-post-hover-bg-gradient-80 70%,
+            $carousel-post-hover-bg-gradient-100 80%,
+            $carousel-post-hover-bg-gradient-100 100%);
+        }
+
+        .card-tags {
+          font-size: 1rem;
+          padding-right: .2rem;
+          margin-bottom: .8rem;
+          max-height: 1.5rem;
+          overflow: hidden;
+
+          span {
+            color: $carousel-post-hover-tags-color;
+            padding-right: .55rem;
+          }
+        }
+
+        .read-more {
+          bottom: 1.5rem;
+          position: absolute;
+          font-size: .9rem;
+
+          .arrow {
+            text-align: center;
+            display: inline-block;
+            vertical-align: middle;
+            width: .9rem;
+            height: .9rem;
+            color: $color-secondary;
+            background-color: $white;
+            border-radius: 50%;
+            margin-left: .5rem;
+            margin-bottom: .1rem;
+            padding-top: .1rem;
+          }
+
+          .ion-ios-arrow-forward:before {
+            font-weight: bold;
+            font-size: 100%;
+            vertical-align: top;
+          }
+
+          a {
+            color: $text-color-hover;
+            text-decoration: none;
+          }
+
+          .circle {
+            padding-left: .2rem;
+          }
         }
       }
-      &.slick-active button:before {
-        background-color: $slick-dot-color-active;
+    }
+  }
+
+  .btn-view {
+    margin: $margin-1-auto;
+  }
+
+  .btn-outline-primary:focus {
+    box-shadow: none;
+  }
+
+  @media(max-width: $sm) {
+    .btn-view {
+      margin: $margin-1-5-auto;
+    }
+
+    .post {
+      height: 15rem;
+
+      a {
+        border: 1px solid rgba(225, 225, 225, 0.6);
+
+        &:hover {
+          border: none;
+          -webkit-box-shadow: 0px 4px 12px 2px rgba(206, 206, 206, 0.36);
+          -moz-box-shadow: 0px 4px 12px 2px rgba(206, 206, 206, 0.36);
+          box-shadow: 0px 4px 12px 2px rgba(206, 206, 206, 0.36);
+        }
       }
+
+      data {
+        padding-top: .2rem;
+      }
+
+      .image {
+        height: 8.12rem;
+      }
+    }
+
+    .card-title {
+      text-transform: uppercase;
+    }
+
+    .card {
+      height: 100%;
+      border: none;
+      padding: .6rem 1rem .8rem;
+
+      &:hover {
+
+        .card-block p {
+          color: $color-secondary;
+        }
+      }
+    }
+
+    .slick-list {
+      margin-left: 1.2rem;
+      margin-right: 1.2rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      color: #154269;
+      padding-bottom: 2.4rem;
+      margin-top: -3.5rem;
+    }
+
+    .menu-wrapper {
+      margin-bottom: 2rem;
+      padding-left: .5rem;
+      padding-right: .5rem;
+
+      .menu {
+        background-color: transparent;
+        margin-bottom: 2rem;
+
+        ul {
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          display: -webkit-flex;
+          display: flex;
+          align-items: center;
+          flex-flow: row wrap;
+          justify-content: center;
+
+          li {
+            background-color: $blog-menu-bg;
+            border-radius: 2.5rem;
+            margin-bottom: 0.8rem;
+            margin-right: 0.5rem;
+            margin-left: 0.5rem;
+            padding: 0 1rem;
+            float: none;
+            width: 26%;
+          }
+        }
+
+        .active {
+          background-color: $color-secondary;
+        }
+      }
+    }
+  }
+
+  @keyframes show-post-hover {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
     }
   }
 
@@ -593,18 +616,20 @@
 </style>
 
 <style lang="scss">
-  #cs_carousel{
-    height: 740px;
+  #blog_carousel{
+    height: 300px;
+    margin-bottom: 6rem;
 
     .carousel-caption{
       position: unset;
+      padding: 0;
     }
   }
 
-  #cs_carousel___BV_indicators_{
-    padding: 1rem 0 0 0;
+  #blog_carousel___BV_indicators_{
+    padding: 3rem 0 0 0;
     margin: 0;
-    bottom: 0;
+    bottom: -5rem;
     width: 100%;
     justify-content: center;
 

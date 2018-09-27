@@ -4,7 +4,6 @@
       <div class="container">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
-        <!--<b-navbar-brand href="#">NavBar</b-navbar-brand>-->
         <nuxt-link to="/" class="navbar-brand">Eliftech</nuxt-link>
 
         <b-collapse is-nav id="nav_collapse">
@@ -47,7 +46,36 @@
 <script>
 
   export default {
-    created: ()=>{
+    methods: {
+      onScroll: function () {
+        const header = document.querySelector('header')
+        const logo = header.querySelector('.navbar-brand')
+        const navLink = header.getElementsByClassName('nav-link')
+
+        if(document.documentElement.scrollTop > 0){
+          header.classList.add('bg-white')
+          logo.classList.add('logo-color')
+
+          for(let i = 0; i<navLink.length; i++){
+            navLink[i].classList.add('font-black')
+          }
+        }else{
+          header.classList.remove('bg-white')
+          logo.classList.remove('logo-color')
+
+          for(let i = 0; i<navLink.length; i++){
+            navLink[i].classList.remove('font-black')
+          }
+        }
+      }
+    },
+    mounted: function () {
+      this.onScroll()
+
+      window.onscroll = ()=>{
+        this.onScroll()
+      }
+
     }
   }
 
@@ -63,6 +91,11 @@
     right: 0;
     left: 0;
     z-index: 1030;
+    transition: all ease-in 350ms;
+
+    &.bg-white{
+      background-color: white !important;
+    }
   }
 
   .container{
@@ -82,14 +115,16 @@
     }
 
     .navbar-brand{
-      background-image: url('~assets/imgs/header-logo.png');
-      background-repeat: no-repeat;
-      background-position: center left;
+      background: url('/images/header-logo.png') no-repeat center left;
       transition: background $header-animation-speed;
       min-width: 235px;
       min-height: 63px;
       text-indent: -1000%;
       overflow: hidden;
+
+      &.logo-color{
+        background: url('/images/header-logo-color.png') no-repeat center left;
+      }
     }
 
     .collapse{
@@ -102,6 +137,10 @@
         font-size: .815rem;
         border-top: 5px solid transparent;
         color: #fff;
+
+        &.font-black{
+          color: #000;
+        }
 
         &:hover{
           border-top: 5px solid #13a6e1;

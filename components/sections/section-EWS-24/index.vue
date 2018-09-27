@@ -142,7 +142,7 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/variables.scss";
+  @import "~/assets/styles/index.scss";
 
   $dropdown-text-color: #434344;
   $dropdown-border-color: #B6B6B7;

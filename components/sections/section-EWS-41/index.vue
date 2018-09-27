@@ -50,7 +50,9 @@
                     <input type="checkbox" class="form-control " aria-label=""/>
                   </div>
                 </div>
-                Yes, I agree to receive emails, newsletters, updates on news, events and offers from your company*
+                <p class="w-90">
+                  Yes, I agree to receive emails, newsletters, updates on news, events and offers from your company*
+                </p>
               </div>
             </small>
           </div>
@@ -267,6 +269,17 @@
     box-shadow: 0 0 0 2px $color-primary;
   }
 
+  .input-group-text{
+    padding: 0;
+    border: 0;
+    background: unset;
+  }
+
+  .w-90{
+    margin: 0;
+    width: 90%;
+  }
+
   @media(max-width: $sm) {
   }
   @media (min-width: 0) and (max-width: $xs) {
@@ -276,32 +289,5 @@
 </style>
 
 <style lang="scss">
-  #cs_carousel{
-    height: 740px;
 
-    .carousel-caption{
-      position: unset;
-    }
-  }
-
-  #cs_carousel___BV_indicators_{
-    padding: 1rem 0 0 0;
-    margin: 0;
-    bottom: 0;
-    width: 100%;
-    justify-content: center;
-
-    li {
-      width: .5rem;
-      height: .5rem;
-      background: #d6d6d6;
-      margin-right: 6px;
-      margin-left: 6px;
-      border-radius: 100%;
-
-      &.active{
-        background: #20abe2;
-      }
-    }
-  }
 </style>

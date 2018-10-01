@@ -1,4 +1,4 @@
-@import "~/assets/styles/variables.scss";
+//@import "~/assets/styles/variables.scss";
 
 .btn.btn-rounded {
   border-radius: 50px;
@@ -103,7 +103,11 @@ h2 {
     color: $white;
     background-color: $color-pink;
   }
-
+  &.btn-primary {
+    color: #FFF;
+    background-color: $color-primary;
+    border-color: $color-primary;
+  }
   &.btn-cyan {
     color: $white;
     background-color: $color-secondary;

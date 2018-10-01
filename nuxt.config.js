@@ -14,6 +14,9 @@ module.exports = {
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900%7CRoboto:300,400,700,900%7CCousine:400,700' },
     ]
   },
+  env: {
+    HOST_URL: process.env.BASE_URL || 'http://localhost:3000'
+  },
   css: [
     { src: '~assets/styles/index.scss', lang: 'scss' },
     "@typopro/web-bebas-neue/TypoPRO-BebasNeue.css"
@@ -33,6 +36,8 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    vendor: ['axios'],
+    watch: ['api'],
     /*
     ** Run ESLint on save
     */
@@ -49,5 +54,8 @@ module.exports = {
   },
   modules: [
     ['bootstrap-vue/nuxt', { css: false }]
+  ],
+  serverMiddleware: [
+    '~/api/index.js'
   ]
 };

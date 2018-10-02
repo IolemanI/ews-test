@@ -22,7 +22,7 @@ export const state = () => ({
       ],
       pdf: '/data/case-studies/audiomachine.pdf',
       mainImage: '/data/case-studies/audiomachine/audiomachine_1.jpg',
-      coverImage: '/data/case-studies/audiomachine/cover.png',
+      coverImage: '/images/case-studies/audiomachine-cover.png',
       screenshots: [
         '/data/case-studies/audiomachine/audiomachine_1.jpg',
         '/data/case-studies/audiomachine/audiomachine_2.jpg',
@@ -68,7 +68,7 @@ export const state = () => ({
       ],
       pdf: '/data/case-studies/class-wallet.pdf',
       mainImage: '/data/case-studies/class-wallet/screenshot1.jpg',
-      coverImage: '/data/case-studies/class-wallet/cover.png',
+      coverImage: '/images/case-studies/class-wallet-cover.png',
       screenshots: [
         '/data/case-studies/class-wallet/screenshot1.jpg',
         '/data/case-studies/class-wallet/screenshot2.jpg',
@@ -104,7 +104,7 @@ export const state = () => ({
       ],
       pdf: '/data/case-studies/maptrack.pdf',
       mainImage: '/data/case-studies/maptrack/Fleet Management System_1.jpg',
-      coverImage: '/data/case-studies/maptrack/cover.png',
+      coverImage: '/images/case-studies/maptrack-cover.png',
       screenshots: [
         '/data/case-studies/maptrack/Fleet Management System_1.jpg',
         '/data/case-studies/maptrack/Fleet Management System_2.jpg',
@@ -152,7 +152,7 @@ export const state = () => ({
       ],
       pdf: '/data/case-studies/windscribe.pdf',
       mainImage: '/data/case-studies/windscribe/Windscribe_1.jpg',
-      coverImage: '/data/case-studies/windscribe/cover.png',
+      coverImage: '/images/case-studies/windscribe-cover.png',
       screenshots: [
         '/data/case-studies/windscribe/Windscribe_1.jpg',
         '/data/case-studies/windscribe/Windscribe_2.jpg',
@@ -189,7 +189,7 @@ export const state = () => ({
       ],
       pdf: '/data/case-studies/jamtag.pdf',
       mainImage: '/data/case-studies/jamtag/JamTag_1.jpg',
-      coverImage: '/data/case-studies/jamtag/cover.png',
+      coverImage: '/images/case-studies/jamtag-cover.png',
       screenshots: [
         '/data/case-studies/jamtag/JamTag_1.jpg',
         '/data/case-studies/jamtag/JamTag_2.jpg',

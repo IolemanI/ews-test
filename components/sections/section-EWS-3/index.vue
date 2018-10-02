@@ -11,7 +11,7 @@
                 @sliding-start="onSlideStart"
                 @sliding-end="onSlideEnd">
 
-      <b-carousel-slide v-for="slide in slides" :img-src="slide.src" :key="slide.src">
+      <b-carousel-slide v-for="(slide, index) in slides" :key="index">
         <img slot="img" class="mainBanner" width="2560" height="832" :style="'background-image: url('+slide.src+')'"
              src="" alt="">
         <div class="container">

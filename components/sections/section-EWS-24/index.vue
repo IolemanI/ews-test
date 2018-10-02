@@ -36,7 +36,7 @@
                         background="#fff0"
                         v-model="slide">
 
-              <b-carousel-slide v-for="slide in caseStudies" :key="slide[0].coverImage._id">
+              <b-carousel-slide v-for="(slide, index) in caseStudies" :key="index">
                 <div class="case-study-slide">
 
                   <div class="col-md-6 case-study" v-for="caseStudy in slide" :key="caseStudy.url" :data-expertise="caseStudy.expertise">
@@ -45,7 +45,7 @@
                       <a :href="'/portfolio/' + caseStudy.url">
                         <div class="card-img-bg img-${caseStudy.url}" :style="'background-color: '+caseStudy.bgColor">
                           <img class="card-img-top image"
-                               :src="'/images/'+caseStudy.coverImage._id"
+                               :src="caseStudy.coverImage"
                                :alt="caseStudy.title"/>
                         </div>
                         <div class="card-block">

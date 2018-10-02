@@ -9,7 +9,7 @@
         <b-collapse is-nav id="nav_collapse">
 
           <b-navbar-nav class="ml-auto">
-            <b-nav-item nuxt to="/forstartups">FOR STARTUPS</b-nav-item>
+            <b-nav-item nuxt to="/forstartups" class="forstartups-item">FOR STARTUPS</b-nav-item>
 
             <li class="my-dropdown nav-item b-nav-dropdown dropdown">
               <a href="#" aria-haspopup="true" aria-expanded="true" class="nav-link dropdown-toggle">
@@ -129,22 +129,36 @@
 
     .collapse{
 
-      .nav-link{
-        min-height: 90px;
-        padding: 34px 0 28px;
-        margin: 0 1.2rem;
-        font-family: Roboto,sans-serif;
-        font-size: .815rem;
-        border-top: 5px solid transparent;
-        color: #fff;
+      .nav-item{
+        .nav-link{
+          min-height: 90px;
+          padding: 34px 0 28px;
+          margin: 0 1.2rem;
+          font-family: Roboto,sans-serif;
+          font-size: .815rem;
+          border-top: 5px solid transparent;
+          color: #fff;
 
-        &.font-black{
-          color: #000;
+          &.font-black{
+            color: #000;
+          }
+
+          &:hover{
+            border-top: 5px solid #13a6e1;
+          }
+        }
+        &.forstartups-item{
+          .nav-link{
+            background-color: #EE3361;
+            color: white;
+            padding: 0.25rem;
+            min-height: 1rem;
+            line-height: 1.3;
+            border: 0;
+            margin-top: 7px;
+          }
         }
 
-        &:hover{
-          border-top: 5px solid #13a6e1;
-        }
       }
 
       .my-dropdown{

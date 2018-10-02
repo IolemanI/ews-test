@@ -16,9 +16,9 @@
                 WHAT WE DO
               </a>
               <div class="dropdown-menu dropdown-menu-left show">
-                <nuxt-link to="/expertise" class="dropdown-item">SERVICES</nuxt-link>
+                <nuxt-link to="/services" class="dropdown-item">SERVICES</nuxt-link>
                 <nuxt-link to="/expertise" class="dropdown-item">EXPERTISE</nuxt-link>
-                <nuxt-link to="/expertise" class="dropdown-item">PORTFOLIO</nuxt-link>
+                <nuxt-link to="/portfolio" class="dropdown-item">PORTFOLIO</nuxt-link>
               </div>
             </li>
             <li class="my-dropdown nav-item b-nav-dropdown dropdown">

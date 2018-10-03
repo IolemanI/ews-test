@@ -108,17 +108,6 @@
     }
   }
 
-  .container{
-    min-height: 60px;
-    max-width: 960px;
-    position: relative;
-
-    @media(max-width: $sm) {
-      min-height: 90px;
-      align-items: flex-start;
-    }
-  }
-
   .navbar{
     padding: 0;
     min-height: 66px;
@@ -190,6 +179,10 @@
           }
         }
         &.forstartups-item{
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
           .nav-link{
             background-color: #EE3361;
             color: white;
@@ -198,11 +191,14 @@
             line-height: 1.3;
             border: 0;
             margin-top: 7px;
+          }
 
-            @media(max-width: $sm) {
+          @media(max-width: $sm) {
+            .nav-link{
               display: inline-block;
               margin: .8rem 2.5rem;
             }
+            justify-content: flex-start;
           }
         }
 
@@ -277,6 +273,17 @@
           }
         }
 
+      }
+    }
+
+    .container{
+      min-height: 60px;
+      max-width: 960px;
+      position: relative;
+
+      @media(max-width: $sm) {
+        min-height: 90px;
+        align-items: flex-start;
       }
     }
   }

@@ -12,9 +12,9 @@
                 @sliding-end="onSlideEnd">
 
       <b-carousel-slide v-for="(slide, index) in slides" :key="index">
-        <img slot="img" class="mainBanner" width="2560" height="832" :style="'background-image: url('+slide.src+')'"
-             src="" alt="">
-        <div class="container">
+        <img slot="img" :class="'mainBanner '+slide.style" src="" alt="">
+
+        <div :class="'container '+slide.style">
           <h1 class="main-title" v-html="slide.title"></h1>
           <div class="subtitle" v-html="slide.subtitle"></div>
 
@@ -40,6 +40,7 @@
         slides: [
           {
             src: '/images/banners/banner_team_wide.png',
+            srcMob: '/images/banners/banner_team_mob.png',
             style: 'whoweare-slide',
             title: `Business-savvy <br/>software engineers <br class="d-md-none"/>ready
                     <br class="d-none d-md-block"/>to work <br class="d-md-none"/>for you`,
@@ -98,7 +99,6 @@
       }
     },
     computed: {
-
     },
     methods: {
       onSlideStart (slide) {
@@ -112,6 +112,7 @@
 </script>
 
 <style scoped lang="scss">
+  @import "~/assets/styles/index.scss";
 
   .section-ews3{
     position: relative;
@@ -143,6 +144,12 @@
         font-family: Roboto,sans-serif;
         font-weight: 700;
         line-height: 1.1;
+
+        @media(max-width: $sm) {
+          font-size: 1.75rem;
+          line-height: 2rem;
+          letter-spacing: 1px;
+        }
       }
       p{
         font-size: 27px;
@@ -162,6 +169,62 @@
         background: #11a5e1;
         background: linear-gradient(180deg,#11a5e1 0,#195aa9);
         filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#11a5e1",endColorstr="#195aa9",GradientType=0);
+      }
+
+      @media(max-width: $sm) {
+        padding: 149px 10% 0;
+        height: 100vh;
+        width: 100%;
+
+        &.whoweare-slide{
+          .main-title {
+            text-transform: none;
+            line-height: 2.3rem;
+          }
+        }
+        &.forstartups-slide{
+          .main-title {
+            font-size: 1.95rem;
+            line-height: 2.4rem;
+            letter-spacing: 0;
+          }
+          .btn.btn-white{
+            margin-top: 3.5rem;
+            letter-spacing: 0;
+          }
+          .subtitle{
+            font-size: 1.1rem;
+            letter-spacing: 0;
+          }
+        }
+        &.portfolio-slide{
+          .main-title {
+            font-size: 1.85rem;
+            line-height: 2.5rem;
+          }
+          .btn.btn-primary{
+            margin-top: 3.5rem;
+          }
+        }
+        &.expertise-slide{
+          .main-title {
+            text-transform: none;
+            line-height: 2.3rem;
+          }
+          .btn.btn-primary{
+            margin-top: 3.5rem;
+          }
+          .subtitle{
+            font-size: 1.1rem;
+          }
+        }
+        &.main-slide{
+          .main-title {
+            font-size: 1.75rem;
+            text-transform: uppercase;
+            line-height: 2rem;
+          }
+        }
       }
     }
   }
@@ -191,6 +254,54 @@
     line-height: 1.22;
   }
 
+  .mainBanner{
+    /*width: 2560px;*/
+    height: 832px;
+
+    &.whoweare-slide{
+      background: url("/images/banners/banner_team_wide.png") center;
+    }
+    &.forstartups-slide{
+      background: url("/images/banners/banner_startup_wide.png") center;
+    }
+    &.portfolio-slide{
+      background: url("/images/banners/banner_portfolio_wide.png") center;
+    }
+    &.expertise-slide{
+      background: url("/images/banners/banner_expertise_wide.png") center;
+    }
+    &.main-slide{
+      background: url("/images/banners/main_banner.png") center;
+    }
+
+
+    @media(max-width: $sm) {
+      /*width: 100%;*/
+      height: 100vh;
+
+      &.whoweare-slide{
+        background: url("/images/banners/banner_team_mob.png") no-repeat center;
+        background-size: cover;
+      }
+      &.forstartups-slide{
+        background: url("/images/banners/banner_startup_mob.png") no-repeat center;
+        background-size: cover;
+      }
+      &.portfolio-slide{
+        background: url("/images/banners/banner_portfolio_mob.png") no-repeat center;
+        background-size: cover;
+      }
+      &.expertise-slide{
+        background: url("/images/banners/banner_expertise_mob.png") no-repeat center;
+        background-size: cover;
+      }
+      &.main-slide{
+        background: url("/images/banners/main_banner_mob.png") no-repeat center;
+        background-size: cover;
+      }
+    }
+  }
+
   .btn.btn-white {
     font-weight: bold;
     border: 0 none;
@@ -213,6 +324,7 @@
 </style>
 
 <style lang="scss">
+  @import "~/assets/styles/index.scss";
 
   #carousel1___BV_indicators_{
     padding: 0 0 0 10%;
@@ -231,6 +343,22 @@
       border-radius: 100%;
       flex: 0 0 auto;
     }
+  }
+
+  #carousel1___BV_inner_{
+    @media(max-width: $sm) {
+      height: 100vh;
+      .carousel-caption{
+        right: 0;
+        left: 0;
+        bottom: 0;
+        top: 0;
+        height: 100vh;
+        padding: 0;
+      }
+    }
+
+
   }
 
 </style>

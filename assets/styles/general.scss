@@ -157,6 +157,11 @@ h2 {
   }
 
   // Outline
+  &.btn-outline-primary{
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+
   &.btn-outline-primary,
   &.btn-outline-secondary,
   &.btn-outline-info,

@@ -38,6 +38,10 @@ module.exports = {
   build: {
     vendor: ['axios'],
     watch: ['api'],
+    dev: false,
+    extractCSS: {
+      allChunks: true
+    },
     /*
     ** Run ESLint on save
     */

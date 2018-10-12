@@ -1,64 +1,37 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        corporative-site-layout
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
+  <section class="main">
+    <page-header :params="pageHeaderData"/>
+    <section-ews41/>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+import pageHeader from '~/components/sections/page-header/index.vue'
+import sectionEws307 from '~/components/sections/section-EWS-307/index.vue'
+import sectionEws317 from '~/components/sections/section-EWS-317/index.vue'
+import sectionEws323 from '~/components/sections/section-EWS-323/index.vue'
+import sectionEws41 from '~/components/sections/section-EWS-41/index.vue'
 
 export default {
   components: {
-    AppLogo
+    pageHeader,
+    sectionEws307,
+    sectionEws317,
+    sectionEws323,
+    sectionEws41
+  },
+  data () {
+    return {
+      pageHeaderData: {
+        title: 'Let’s Create Remarkable Products Together!',
+        cssClass: 'contacts',
+        titleClass: 'contacts-text'
+      }
+    }
   }
 }
 </script>
 
-<style scoped>
-.container {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
+<style scoped lang="scss">
 
-.title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
 </style>

@@ -25,7 +25,12 @@ import sectionEws41 from '~/components/sections/section-EWS-41/index.vue'
 
 export default {
   head: {
-    title: 'Домашнаяя страница'
+    title: 'ELIFTECH | Your Trusted IT Partner | Software Development',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Global tech service company that covers all aspects of custom software development using the latest technologies and frameworks' },
+      { hid: 'image', property:"og:image", content: '/data/social/facebook.jpg' },
+      { hid: 'keywords', name: 'keywords', content: 'software developer, offshore software development, custom software development company, Software Project Outsourcing, Quality Assurance, software Architecture, UI, UX, DevOps, fintech, adtech, martech, Health tech, edtech, LogTech' }
+    ]
   },
   components: {
     sectionEws3,

@@ -28,8 +28,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
-
   .section-ews323{
   }
 

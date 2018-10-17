@@ -25,7 +25,7 @@
                   </div>
                 </div>
 
-                <a class="carousel-control-prev visible" href="#feedbackCarousel"
+                <a class="carousel-control-prev visible" href="javascript:;"
                    @click="prevSlide"
                    role="button"
                    data-slide="prev">
@@ -34,7 +34,7 @@
                     <span class="sr-only">Previous</span>
                   </div>
                 </a>
-                <a class="carousel-control-next visible" href="#feedbackCarousel"
+                <a class="carousel-control-next visible" href="javascript:;"
                    @click="nextSlide"
                    role="button"
                    data-slide="next">
@@ -140,8 +140,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/variables.scss";
-
   $feedback-icon-size: 6.3rem;
   $feedback-icon-size-sm: 4.5rem;
   $feedback-icon-margin: -$feedback-icon-size/2 auto 1.7rem;

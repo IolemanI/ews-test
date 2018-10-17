@@ -94,8 +94,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
-
   .section-ews41{
     margin-bottom: 0;
     position: relative;

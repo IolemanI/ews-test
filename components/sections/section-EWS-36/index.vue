@@ -83,7 +83,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
   $case-a-background: #2DB7C9;
   $case-c-background: #21569B;
   $section-d-icon-margin: 0 2.5rem;
@@ -172,7 +171,7 @@
       height: 83px;
       background-image: url('/sections/section-ews36/estimate-icon.png');
     }
-    @include media-breakpoint-down('sm') {
+    @media(max-width: $sm) {
       background-position: center center;
 
       .btn {

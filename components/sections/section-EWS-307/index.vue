@@ -156,7 +156,6 @@ For more information about our Privacy Policy please follow the link</span>
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
   $margin-0-auto: 0 auto;
   $tooltiptext-content: '';
   $animation-speed: 200ms;
@@ -361,7 +360,7 @@ For more information about our Privacy Policy please follow the link</span>
 
   .b-social-links {
     list-style: none;
-    padding: $spacer / 3  0;
+    padding: 1rem / 3  0;
     text-align: center;
 
     li {
@@ -403,7 +402,7 @@ For more information about our Privacy Policy please follow the link</span>
         a {
           .socicon-clutch {
             @media(max-width: $sm) {
-              background-image: url(/sections/section-307/soc-clutch@2x.png);
+              background-image: url(/sections/section-ews307/soc-clutch@2x.png);
               background-size: 20px 45px;
               width: 20px;
               height: 22px;

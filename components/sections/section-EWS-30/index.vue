@@ -165,8 +165,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
-
   $text-color-hover: #FFFFFF;
   $text-color-active: #FFFFFF;
   $blog-menu-subtitle-color: #212121;

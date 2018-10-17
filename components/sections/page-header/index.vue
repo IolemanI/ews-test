@@ -13,7 +13,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
   $margin-null: 0;
 
   .page-header {

@@ -43,8 +43,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
-
   $block-margin: 10px 0;
   $block-padding: 10px 10px;
   $block-height: 250px;

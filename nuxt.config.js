@@ -18,9 +18,8 @@ module.exports = {
     HOST_URL: process.env.BASE_URL || 'http://localhost:3000'
   },
   css: [
-    { src: '~assets/styles/index.scss', lang: 'scss' },
-    "@typopro/web-bebas-neue/TypoPRO-BebasNeue.css"
-    // '~assets/styles/general.scss',
+    { src: '@/assets/styles/index.scss', lang: 'scss' }
+    // "@typopro/web-bebas-neue/TypoPRO-BebasNeue.css"
     // '~assets/styles/variables.scss',
     // 'bootstrap-vue/dist/bootstrap-vue.css',
     // 'bootstrap/scss/bootstrap.scss'
@@ -38,7 +37,7 @@ module.exports = {
   build: {
     vendor: ['axios'],
     watch: ['api'],
-    dev: false,
+    dev: true,
     extractCSS: {
       allChunks: true
     },
@@ -57,6 +56,7 @@ module.exports = {
     // }
   },
   modules: [
+    ['nuxt-sass-resources-loader', '@/assets/styles/variables.scss'],
     ['bootstrap-vue/nuxt', { css: false }]
   ],
   serverMiddleware: [

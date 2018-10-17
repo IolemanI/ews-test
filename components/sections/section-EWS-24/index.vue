@@ -128,8 +128,6 @@
 </script>
 
 <style scoped lang="scss">
-  @import "~/assets/styles/index.scss";
-
   $dropdown-text-color: #434344;
   $dropdown-border-color: #B6B6B7;
   $dropdown-hover-item-color: #F1F2F5;

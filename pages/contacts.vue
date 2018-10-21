@@ -3,6 +3,7 @@
     <page-header :params="pageHeaderData"/>
     <section-ews307/>
     <section-ews317/>
+    <section-ews323/>
     <section-ews41/>
   </section>
 </template>

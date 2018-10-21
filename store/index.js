@@ -1,9 +1,22 @@
-export const state = () => ({
-  blogs: []
-})
+import Vue from "vue"
+import Vuex from "vuex"
+import caseStudies from "./casestudies"
+import blogs from "./blogs"
+import reviews from "./reviews"
 
-export const mutations = {
-  increment (state) {
-    state.counter++
-  }
+Vue.use(Vuex);
+
+export const store = () => {
+  return new Vuex.Store({
+    state: {
+
+    },
+    modules: {
+      caseStudies,
+      blogs,
+      reviews
+    }
+  })
 }
+
+export default store

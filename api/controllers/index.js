@@ -1,11 +1,20 @@
-// Mock Users
-const count = 0
+const axios = require('axios')
 
-
-let getCaseStudies = function (req, res, next) {
-
-  res.set('Set-Cookie', [`count=${count}`]);
-  res.send('okcxvxcv');
+/**
+ *  GET /api/case-studies
+ * */
+let getCaseStudies = async (req, res, next) => {
+  await axios.get('http://localhost:4000/api/public/caseStudies?published=true')
+    .then(response => res.send(response.data))
+    .catch(err => null)
+}
+/**
+ *  GET /api/reviews
+ * */
+let getReviews = async (req, res, next) => {
+  await axios.get('http://localhost:4000/api/public/reviews')
+    .then(response => res.send(response.data))
+    .catch(err => null)
 }
 
-module.exports = {getCaseStudies};
+module.exports = {getCaseStudies, getReviews};

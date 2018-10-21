@@ -1,8 +1,8 @@
 const { Router } = require('express')
-const {getCaseStudies} = require('../controllers/index')
+const {getCaseStudies, getReviews} = require('../controllers/index')
 const router = Router()
 
-/* GET client info */
 router.get('/case-studies', getCaseStudies)
+router.get('/reviews', getReviews)
 
 module.exports = router

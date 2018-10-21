@@ -12,10 +12,14 @@ module.exports = {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,700i,900%7CRoboto:300,400,700,900%7CCousine:400,700' },
+    ],
+    script: [
+      { src: 'https://apis.google.com/js/api:client.js' },
+      { src: 'https://apis.google.com/js/platform.js', defer: true }
     ]
   },
   env: {
-    HOST_URL: process.env.BASE_URL || 'http://localhost:3000'
+    CMS_API_URL: process.env.BASE_URL || 'http://localhost:4000/api'
   },
   css: [
     { src: '@/assets/styles/index.scss', lang: 'scss' }

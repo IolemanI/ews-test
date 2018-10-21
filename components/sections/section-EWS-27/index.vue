@@ -100,24 +100,26 @@
           this.slide = this.carouselItems.length
       },
       setSlide: function (slide) {
+        try {
+          for(let i = 0; i < this.carouselItems.length; i++){
+            this.carouselItems[i].classList.remove('active', 'left', 'right')
+          }
 
-        for(let i = 0; i < this.carouselItems.length; i++){
-          this.carouselItems[i].classList.remove('active', 'left', 'right')
+          this.carouselItems[slide-1].classList.add('active')
+
+          if(slide === 1){
+            this.carouselItems[this.carouselItems.length-1].classList.add('left')
+            this.carouselItems[slide].classList.add('right')
+          }else if(slide === this.carouselItems.length){
+            this.carouselItems[slide-2].classList.add('left')
+            this.carouselItems[0].classList.add('right')
+          }else{
+            this.carouselItems[slide-2].classList.add('left')
+            this.carouselItems[slide].classList.add('right')
+          }
+        }catch (e) {
+          console.error(e)
         }
-
-        this.carouselItems[slide-1].classList.add('active')
-
-        if(slide === 1){
-          this.carouselItems[this.carouselItems.length-1].classList.add('left')
-          this.carouselItems[slide].classList.add('right')
-        }else if(slide === this.carouselItems.length){
-          this.carouselItems[slide-2].classList.add('left')
-          this.carouselItems[0].classList.add('right')
-        }else{
-          this.carouselItems[slide-2].classList.add('left')
-          this.carouselItems[slide].classList.add('right')
-        }
-
       }
     },
     mounted: function () {

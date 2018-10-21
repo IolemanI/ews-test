@@ -109,8 +109,13 @@
     },
     methods: {
     },
-    mounted(){
-      let caseStudies = this.$store.state.casestudies.list;
+    async mounted(){
+      // if(!this.$store.state.caseStudies.list){
+      //   await this.$store.dispatch('fetchCaseStudies')
+      // }
+
+      let caseStudies = this.$store.state.caseStudies.list || []
+
       let tempCaseStudies = [];
       let itemsPerSlide = 4;
 

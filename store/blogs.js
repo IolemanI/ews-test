@@ -1,4 +1,6 @@
-export const state = () => ({
+import axios from 'axios'
+
+const state = () => ({
   list: [
     {
       id: 1,
@@ -1648,7 +1650,26 @@ export const state = () => ({
   ]
 })
 
-export const mutations = {
+const getters = {
 
 }
+
+const mutations = {
+
+}
+
+const actions = {
+  // nuxtServerInit is called by Nuxt.js before server-rendering every page
+  nuxtServerInit ({ commit }, { req }) {
+
+  }
+}
+
+export default {
+  state,
+  getters,
+  mutations,
+  actions,
+}
+
 

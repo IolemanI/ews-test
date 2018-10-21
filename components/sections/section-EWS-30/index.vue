@@ -28,7 +28,6 @@
                       img-width="100"
                       img-height="280"
                       :interval=0
-                      background="#000"
                       v-model="slide">
 
             <b-carousel-slide v-for="slide in blogs" :key="slide[0].id">

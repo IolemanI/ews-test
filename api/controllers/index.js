@@ -16,5 +16,13 @@ let getReviews = async (req, res, next) => {
     .then(response => res.send(response.data))
     .catch(err => null)
 }
+/**
+ *  GET /api/blog-posts
+ * */
+let getBlogPosts = async (req, res, next) => {
+  await axios.get('http://localhost:4000/api/posts')
+    .then(response => res.send(response.data))
+    .catch(err => null)
+}
 
-module.exports = {getCaseStudies, getReviews};
+module.exports = {getCaseStudies, getReviews, getBlogPosts};

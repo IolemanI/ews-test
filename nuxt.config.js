@@ -19,7 +19,8 @@ module.exports = {
     ]
   },
   env: {
-    CMS_API_URL: process.env.BASE_URL || 'http://localhost:4000/api'
+    HOST_URL: process.env.BASE_URL || 'http://localhost:3000',
+    CMS_API_URL: 'http://localhost:4000/api'
   },
   css: [
     { src: '@/assets/styles/index.scss', lang: 'scss' }

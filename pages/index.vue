@@ -22,7 +22,7 @@
   import sectionEws34 from '~/components/sections/section-EWS-34/index.vue'
   import sectionEws36 from '~/components/sections/section-EWS-36/index.vue'
   import sectionEws41 from '~/components/sections/section-EWS-41/index.vue'
-  import axios from "../plugins/axios";
+  import {getCaseStudies, getReviews, getBlogPosts} from "../plugins/api-helper";
 
   export default {
     head: {
@@ -33,23 +33,22 @@
         { hid: 'keywords', name: 'keywords', content: 'software developer, offshore software development, custom software development company, Software Project Outsourcing, Quality Assurance, software Architecture, UI, UX, DevOps, fintech, adtech, martech, Health tech, edtech, LogTech' }
       ]
     },
-    data () {
+    async fetch ({store, params}) {
+      let [caseStudies, reviews, blogPosts] = await Promise.all([
+        getCaseStudies(),
+        getReviews(),
+        getBlogPosts()
+      ])
+
+      store.commit('setCaseStudies', caseStudies)
+      store.commit('setReviews', reviews)
+      store.commit('setBlogPosts', blogPosts)
+
       return {
-        caseStudies: [],
-        reviews: []
+        caseStudies,
+        reviews
       }
     },
-    // async asyncData () {
-    //   let [caseStudies, reviews] = await Promise.all([
-    //     axios.get('/public/caseStudies?published=true'),
-    //     axios.get('/public/reviews')
-    //   ])
-    //
-    //   return {
-    //     caseStudies: caseStudies.data,
-    //     reviews: reviews.data
-    //   }
-    // },
     components: {
       sectionEws3,
       sectionEws16,
@@ -60,12 +59,7 @@
       sectionEws34,
       sectionEws36,
       sectionEws41
-    },
-    mounted () {
-      this.$store.commit('setCaseStudies', this.caseStudies)
-      this.$store.commit('setReviews', this.reviews)
     }
-
   }
 </script>
 

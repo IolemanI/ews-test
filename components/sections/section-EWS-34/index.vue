@@ -36,9 +36,9 @@
 * Low - 3
 */
 
-const COUNT_OF_BLOCKS = 12;
-const SWITCH_LOGO_TIMEOUT = 5000;
-const ANIMATION_DELAY = 3000;
+const COUNT_OF_BLOCKS = 12
+const SWITCH_LOGO_TIMEOUT = 5000
+const ANIMATION_DELAY = 3000
 
   export default {
     data () {
@@ -183,57 +183,57 @@ const ANIMATION_DELAY = 3000;
         throw new Error('Wrong value of COUNT_OF_BLOCKS')
       }
 
-      let initedValues = [];
-      let logosContainer = document.querySelector('#b-tech-icons');
+      let initedValues = []
+      let logosContainer = document.querySelector('#b-tech-icons')
 
       function initContainer(items) {
-        let randomItems = shuffle(items.slice());
+        let randomItems = shuffle(items.slice())
 
         for(let i = 0; i<12; i++){
           if(i<2){
             let filteredItems = randomItems.filter(item=>{
               return item.priority == 1
             });
-            initItem(filteredItems[0]);
-            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1);
+            initItem(filteredItems[0])
+            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
           }else if(i>1 && i<6){
             let filteredItems = randomItems.filter(item=>{
-              return item.priority < 3;
+              return item.priority < 3
             });
-            initItem(filteredItems[0]);
-            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1);
+            initItem(filteredItems[0])
+            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
 
           }else if(i>5 && i<12){
             let filteredItems = randomItems.filter(item=>{
               return item.priority < 4
             });
-            initItem(filteredItems[0]);
-            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1);
+            initItem(filteredItems[0])
+            randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
           }
         }
 
-        console.log('==> random items',randomItems);
+        console.log('==> random items',randomItems)
       }
 
       function shuffle(array) {
         let currentIndex = array.length,
           temporaryValue,
-          randomIndex;
+          randomIndex
 
         while (0 !== currentIndex) {
-          randomIndex = Math.floor(Math.random() * currentIndex);
-          currentIndex -= 1;
+          randomIndex = Math.floor(Math.random() * currentIndex)
+          currentIndex -= 1
 
-          temporaryValue = array[currentIndex];
-          array[currentIndex] = array[randomIndex];
-          array[randomIndex] = temporaryValue;
+          temporaryValue = array[currentIndex]
+          array[currentIndex] = array[randomIndex]
+          array[randomIndex] = temporaryValue
         }
 
-        return array;
+        return array
       }
 
       function initItem(item) {
-        const div = document.createElement('div');
+        const div = document.createElement('div')
         div.innerHTML =
           `<div class="col-4 col-md-2 b-tech-icon-ews34 d-flex align-items-center justify-content-center visible">
             <img class="${item.class ? item.class : ''}" src="${item.image}" alt="${item.title}">
@@ -246,53 +246,54 @@ const ANIMATION_DELAY = 3000;
       }
 
       function getRandomElement(arr) {
-        return arr[Math.floor(Math.random()*arr.length)];
+        return arr[Math.floor(Math.random()*arr.length)]
       }
 
       const switchLogo = () => {
-        let itemForHide = getRandomElement(initedValues);
-        let elemIndex = initedValues.indexOf(itemForHide);
-        let tempElems = this.technologies.slice();
-        let filteredItems = [];
+        let itemForHide = getRandomElement(initedValues)
+        let elemIndex = initedValues.indexOf(itemForHide)
+        let tempElems = this.technologies.slice()
+        let filteredItems = []
 
-        initedValues.forEach(elem=>tempElems.splice(tempElems.indexOf(elem), 1));
+        initedValues.forEach(elem=>tempElems.splice(tempElems.indexOf(elem), 1))
 
         if(elemIndex<2)
-          filteredItems = tempElems.filter(elem=>elem.priority == 1);
+          filteredItems = tempElems.filter(elem=>elem.priority == 1)
         else if(elemIndex>1 && elemIndex<6)
-          filteredItems = tempElems.filter(elem=>elem.priority < 3);
+          filteredItems = tempElems.filter(elem=>elem.priority < 3)
         else if(elemIndex>5 && elemIndex<12)
-          filteredItems = tempElems.filter(elem=>elem.priority < 4);
+          filteredItems = tempElems.filter(elem=>elem.priority < 4)
 
-        if(!filteredItems.length > 0)
-          return;
+        if(!filteredItems.length > 0) return
 
-        let newEl = getRandomElement(filteredItems);
-        initedValues.splice(elemIndex, 1, newEl);
+        let newEl = getRandomElement(filteredItems)
+        initedValues.splice(elemIndex, 1, newEl)
 
-        let elem = itemForHide.el;
+        let elem = itemForHide.el
         if (elem)
-          elem.classList.remove('visible');
+          elem.classList.remove('visible')
 
-        setTimeout(function() {
-          let img = new Image();
+        setTimeout(function () {
+          let img = new Image()
           img.onload = () => {
             newEl.el = elem
-            itemForHide.el = null;
-            elem.classList.add('visible');
+            itemForHide.el = null
 
-            let child = newEl.el.childNodes;
+            if (elem)
+              elem.classList.add('visible')
+
+            let child = newEl.el.childNodes
 
             child[1].setAttribute('src', newEl.image);
-            child[1].setAttribute('class', newEl.class?newEl.class:'');
-            child[1].setAttribute('alt', newEl.title);
+            child[1].setAttribute('class', newEl.class?newEl.class:'')
+            child[1].setAttribute('alt', newEl.title)
           };
-          img.src = newEl.image;
-        }, ANIMATION_DELAY);
+          img.src = newEl.image
+        }, ANIMATION_DELAY)
       }
 
-      initContainer(this.technologies);
-      setInterval(switchLogo, SWITCH_LOGO_TIMEOUT);
+      initContainer(this.technologies)
+      setInterval(switchLogo, SWITCH_LOGO_TIMEOUT)
     }
   }
 </script>

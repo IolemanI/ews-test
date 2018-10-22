@@ -170,14 +170,6 @@ const ANIMATION_DELAY = 3000
         count: 0
       }
     },
-    computed: {
-
-    },
-    watch: {
-
-    },
-    methods: {
-    },
     mounted: function () {
       if (COUNT_OF_BLOCKS >= this.technologies.length) {
         throw new Error('Wrong value of COUNT_OF_BLOCKS')
@@ -186,36 +178,34 @@ const ANIMATION_DELAY = 3000
       let initedValues = []
       let logosContainer = document.querySelector('#b-tech-icons')
 
-      function initContainer(items) {
+      function initContainer (items) {
         let randomItems = shuffle(items.slice())
 
-        for(let i = 0; i<12; i++){
-          if(i<2){
-            let filteredItems = randomItems.filter(item=>{
+        for (let i = 0; i<12; i++){
+          if (i<2){
+            let filteredItems = randomItems.filter(item => {
               return item.priority == 1
             });
             initItem(filteredItems[0])
             randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
-          }else if(i>1 && i<6){
-            let filteredItems = randomItems.filter(item=>{
+          }else if (i>1 && i<6){
+            let filteredItems = randomItems.filter(item => {
               return item.priority < 3
             });
             initItem(filteredItems[0])
             randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
 
-          }else if(i>5 && i<12){
-            let filteredItems = randomItems.filter(item=>{
+          }else if (i>5 && i<12){
+            let filteredItems = randomItems.filter(item => {
               return item.priority < 4
             });
             initItem(filteredItems[0])
             randomItems.splice(randomItems.indexOf(filteredItems[0]), 1)
           }
         }
-
-        console.log('==> random items',randomItems)
       }
 
-      function shuffle(array) {
+      function shuffle (array) {
         let currentIndex = array.length,
           temporaryValue,
           randomIndex
@@ -232,7 +222,7 @@ const ANIMATION_DELAY = 3000
         return array
       }
 
-      function initItem(item) {
+      function initItem (item) {
         const div = document.createElement('div')
         div.innerHTML =
           `<div class="col-4 col-md-2 b-tech-icon-ews34 d-flex align-items-center justify-content-center visible">
@@ -245,7 +235,7 @@ const ANIMATION_DELAY = 3000
         initedValues.push(item)
       }
 
-      function getRandomElement(arr) {
+      function getRandomElement (arr) {
         return arr[Math.floor(Math.random()*arr.length)]
       }
 
@@ -255,16 +245,16 @@ const ANIMATION_DELAY = 3000
         let tempElems = this.technologies.slice()
         let filteredItems = []
 
-        initedValues.forEach(elem=>tempElems.splice(tempElems.indexOf(elem), 1))
+        initedValues.forEach(elem => tempElems.splice(tempElems.indexOf(elem), 1))
 
-        if(elemIndex<2)
-          filteredItems = tempElems.filter(elem=>elem.priority == 1)
-        else if(elemIndex>1 && elemIndex<6)
-          filteredItems = tempElems.filter(elem=>elem.priority < 3)
-        else if(elemIndex>5 && elemIndex<12)
-          filteredItems = tempElems.filter(elem=>elem.priority < 4)
+        if (elemIndex<2)
+          filteredItems = tempElems.filter(elem => elem.priority == 1)
+        else if (elemIndex>1 && elemIndex<6)
+          filteredItems = tempElems.filter(elem => elem.priority < 3)
+        else if (elemIndex>5 && elemIndex<12)
+          filteredItems = tempElems.filter(elem => elem.priority < 4)
 
-        if(!filteredItems.length > 0) return
+        if (!filteredItems.length > 0) return
 
         let newEl = getRandomElement(filteredItems)
         initedValues.splice(elemIndex, 1, newEl)
@@ -287,7 +277,7 @@ const ANIMATION_DELAY = 3000
             child[1].setAttribute('src', newEl.image);
             child[1].setAttribute('class', newEl.class?newEl.class:'')
             child[1].setAttribute('alt', newEl.title)
-          };
+          }
           img.src = newEl.image
         }, ANIMATION_DELAY)
       }

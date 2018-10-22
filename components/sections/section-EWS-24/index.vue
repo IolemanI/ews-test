@@ -45,7 +45,7 @@
                       <a :href="'/portfolio/' + caseStudy.url">
                         <div class="card-img-bg img-${caseStudy.url}" :style="'background-color: '+caseStudy.bgColor">
                           <img class="card-img-top image"
-                               :src="caseStudy.coverImage"
+                               :src="cmsHost + '/files/' + caseStudy.coverImage._id"
                                :alt="caseStudy.title"/>
                         </div>
                         <div class="card-block">
@@ -102,6 +102,8 @@
         view: "View all",
         slide: 0,
         sliding: null,
+        // ToDo: make route for image fetching
+        cmsHost: 'http://localhost:4000/api',
         caseStudies: []
       }
     },

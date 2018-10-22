@@ -288,25 +288,25 @@
 
       // Get the HTML DOM element that will contain your map
       // We are using a div with id="map" seen below in the <body>
-      let mapElement = document.getElementById('map');
-
-      // Create the Google Map using our element and options defined above
-      let map = new google.maps.Map(mapElement, mapOptions);
-
-      let bounds = new google.maps.LatLngBounds();
-      this.offices.forEach(point => {
-
-        // Let's also add a marker while we're at it
-        let marker = new google.maps.Marker({
-          position: new google.maps.LatLng(point.lat, point.lng),
-          map: map,
-          title: point.title,
-          icon: point.marker
-        });
-
-        bounds.extend(marker.position);
-      });
-      map.fitBounds(bounds);
+      // let mapElement = document.getElementById('map');
+      //
+      // // Create the Google Map using our element and options defined above
+      // let map = new google.maps.Map(mapElement, mapOptions);
+      //
+      // let bounds = new google.maps.LatLngBounds();
+      // this.offices.forEach(point => {
+      //
+      //   // Let's also add a marker while we're at it
+      //   let marker = new google.maps.Marker({
+      //     position: new google.maps.LatLng(point.lat, point.lng),
+      //     map: map,
+      //     title: point.title,
+      //     icon: point.marker
+      //   });
+      //
+      //   bounds.extend(marker.position);
+      // });
+      // map.fitBounds(bounds);
     }
   }
 </script>

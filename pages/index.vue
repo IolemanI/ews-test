@@ -33,21 +33,16 @@
         { hid: 'keywords', name: 'keywords', content: 'software developer, offshore software development, custom software development company, Software Project Outsourcing, Quality Assurance, software Architecture, UI, UX, DevOps, fintech, adtech, martech, Health tech, edtech, LogTech' }
       ]
     },
-    async fetch ({store, params}) {
-      let [caseStudies, reviews, blogPosts] = await Promise.all([
+    async mounted () {
+      let [caseStudies, blogPosts, reviews] = await Promise.all([
         getCaseStudies(),
-        getReviews(),
-        getBlogPosts()
+        getBlogPosts(),
+        getReviews()
       ])
 
-      store.commit('setCaseStudies', caseStudies)
-      store.commit('setReviews', reviews)
-      store.commit('setBlogPosts', blogPosts)
-
-      return {
-        caseStudies,
-        reviews
-      }
+      this.$store.commit('setCaseStudies', caseStudies)
+      this.$store.commit('setBlogPosts', blogPosts)
+      this.$store.commit('setReviews', reviews)
     },
     components: {
       sectionEws3,

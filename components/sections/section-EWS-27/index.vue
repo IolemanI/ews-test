@@ -7,7 +7,7 @@
         <div class="row hidden-sm-down">
           <div class="carousel-container offset-md-2 col-md-8">
             <div id="feedbackCarousel" class="carousel slide" @mouseover="mouseOver" @mouseout="mouseOut">
-              <div class="carousel-inner testimonials" role="listbox">
+              <div class="carousel-inner testimonials" role="listbox" ref="carouselInner">
 
                 <div class="carousel-item"
                      v-for="(review, index) in reviews"
@@ -65,19 +65,26 @@
       return {
         slide: 1,
         sliding: null,
-        carouselItems: null,
+        carouselItems: [],
         slideInterval: 4000,
-        isPaused: false
+        isPaused: false,
+        isLoading: true,
+        reviews: []
       }
     },
     computed: {
-      reviews () {
+      reviewsList (value) {
         return this.$store.state.reviews.list
       }
     },
     watch: {
       slide: function () {
         this.setSlide(this.slide)
+      },
+      reviewsList (value) {
+        this.reviews = value
+        this.carouselItems = this.$refs.carouselInner.getElementsByClassName('carousel-item')
+        setTimeout(() => this.setSlide(this.slide), 500)
       }
     },
     methods: {
@@ -101,19 +108,19 @@
       },
       setSlide: function (slide) {
         try {
-          for(let i = 0; i < this.carouselItems.length; i++){
+          for (let i = 0; i < this.carouselItems.length; i++){
             this.carouselItems[i].classList.remove('active', 'left', 'right')
           }
 
           this.carouselItems[slide-1].classList.add('active')
 
-          if(slide === 1){
+          if (slide === 1) {
             this.carouselItems[this.carouselItems.length-1].classList.add('left')
             this.carouselItems[slide].classList.add('right')
-          }else if(slide === this.carouselItems.length){
+          } else if (slide === this.carouselItems.length){
             this.carouselItems[slide-2].classList.add('left')
             this.carouselItems[0].classList.add('right')
-          }else{
+          } else {
             this.carouselItems[slide-2].classList.add('left')
             this.carouselItems[slide].classList.add('right')
           }
@@ -123,20 +130,16 @@
       }
     },
     mounted: function () {
-      this.carouselItems = document.querySelector('.carousel-inner.testimonials').getElementsByClassName('carousel-item')
-      this.setSlide(this.slide)
+      this.carouselItems = this.$refs.carouselInner.getElementsByClassName('carousel-item')
 
-      let slideInterval = setInterval(()=>{
-
-        if(!this.isPaused){
-          if(this.slide < this.carouselItems.length)
+      setInterval(() => {
+        if (!this.isPaused) {
+          if (this.slide < this.carouselItems.length)
             this.slide += 1
           else
             this.slide = 1
         }
-
       }, this.slideInterval)
-
     }
   }
 </script>

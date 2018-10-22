@@ -107,6 +107,7 @@
       return {
         slide: 1,
         sliding: null,
+        blogs: [],
         itemsPerSlide: 3,
         title: 'Blog',
         subtitle: 'Our insightful ideas and relevant industry news',
@@ -136,20 +137,22 @@
       }
     },
     computed: {
-      blogs () {
-        let blogs = this.$store.state.blogs.list
-        let tempBlogs = [];
-
-        for (let i = 0; i < blogs.length; i += this.itemsPerSlide) {
-          tempBlogs.push(blogs.slice(i, i + this.itemsPerSlide))
-        }
-
-        return tempBlogs
+      blogPostsList (value) {
+        return this.$store.state.blogs.list
       }
     },
     watch: {
-      slide: function () {
+      slide () {
         this.setSlide(this.slide)
+      },
+      blogPostsList (value) {
+        let tempBlogs = [];
+
+        for (let i = 0; i < value.length; i += this.itemsPerSlide) {
+          tempBlogs.push(value.slice(i, i + this.itemsPerSlide))
+        }
+
+        this.blogs = tempBlogs
       }
     },
     methods: {
@@ -157,8 +160,7 @@
 
       }
     },
-    mounted: function () {
-
+    mounted () {
     }
   }
 </script>

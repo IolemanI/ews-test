@@ -41,7 +41,7 @@ module.exports = {
   */
   build: {
     vendor: ['axios'],
-    watch: ['api'],
+    watch: ['~/server/*.js'],
     dev: true,
     extractCSS: {
       allChunks: true
@@ -65,6 +65,6 @@ module.exports = {
     ['bootstrap-vue/nuxt', { css: false }]
   ],
   serverMiddleware: [
-    '~/api/index.js'
+    '~/server/index.js'
   ]
 };

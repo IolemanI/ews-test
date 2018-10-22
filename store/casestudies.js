@@ -1,8 +1,6 @@
-import {getCaseStudies} from './api-helper'
-
-const state = () => {
+const state = () => ({
   list: []
-}
+})
 
 const getters = {
 

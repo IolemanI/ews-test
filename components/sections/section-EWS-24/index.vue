@@ -102,32 +102,33 @@
         view: "View all",
         slide: 0,
         sliding: null,
-        caseStudies: ''
+        caseStudies: []
       }
     },
     computed: {
+      caseStudiesList (value) {
+        return this.$store.state.caseStudies.list
+      }
+    },
+    watch: {
+      caseStudiesList (value) {
+        let tempCaseStudies = [];
+        let itemsPerSlide = 4;
+
+        if(window.screen.availWidth <= 480){
+          itemsPerSlide = 3;
+        }
+
+        for (let i = 0; i < value.length; i += itemsPerSlide) {
+          tempCaseStudies.push(value.slice(i, i + itemsPerSlide))
+        }
+
+        this.caseStudies = tempCaseStudies
+      }
     },
     methods: {
     },
-    async mounted(){
-      // if(!this.$store.state.caseStudies.list){
-      //   await this.$store.dispatch('fetchCaseStudies')
-      // }
-
-      let caseStudies = this.$store.state.caseStudies.list || []
-
-      let tempCaseStudies = [];
-      let itemsPerSlide = 4;
-
-      if(window.screen.availWidth <= 480){
-        itemsPerSlide = 3;
-      }
-
-      for (let i = 0; i < caseStudies.length; i += itemsPerSlide) {
-        tempCaseStudies.push(caseStudies.slice(i, i + itemsPerSlide))
-      }
-
-      this.caseStudies = tempCaseStudies
+    mounted(){
     }
   }
 </script>

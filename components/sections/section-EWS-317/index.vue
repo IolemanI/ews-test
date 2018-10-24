@@ -9,8 +9,6 @@
 </template>
 
 <script>
-  import Slick from 'vue-slick'
-
   export default {
     data () {
       return {
@@ -64,21 +62,11 @@
       }
     },
     watch: {
-
     },
     methods: {
-      reInit() {
-        // Helpful if you have to deal with v-for to update dynamic lists
-        this.$nextTick(() => {
-          this.$refs.slick.reSlick();
-        });
-      }
     },
     mounted () {
 
-    },
-    components: {
-      Slick
     }
   }
 </script>

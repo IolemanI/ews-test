@@ -30,7 +30,8 @@ module.exports = {
     // 'bootstrap/scss/bootstrap.scss'
   ],
   plugins: [
-    'plugins/bootstrap-vue.js'
+    'plugins/bootstrap-vue.js',
+    '~/plugins/slick'
   ],
   /*
   ** Customize the progress bar color
@@ -49,16 +50,23 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    // extend (config, { isDev, isClient }) {
-    //   if (isDev && isClient) {
-    //     config.module.rules.push({
-    //       enforce: 'pre',
-    //       test: /\.(js|vue)$/,
-    //       loader: 'eslint-loader',
-    //       exclude: /(node_modules)/
-    //     })
-    //   }
-    // }
+    extend (config, { isDev, isClient, isServer }) {
+      // if (isDev && isClient) {
+      //   config.module.rules.push({
+      //     enforce: 'pre',
+      //     test: /\.(js|vue)$/,
+      //     loader: 'eslint-loader',
+      //     exclude: /(node_modules)/
+      //   })
+      // }
+      if (isServer) {
+        config.externals += [
+          require('webpack-node-externals')({
+            whitelist: [/^vue-slick/]
+          })
+        ]
+      }
+    }
   },
   modules: [
     ['nuxt-sass-resources-loader', '@/assets/styles/variables.scss'],

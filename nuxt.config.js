@@ -20,7 +20,7 @@ module.exports = {
   },
   env: {
     HOST_URL: process.env.BASE_URL || 'http://localhost:3000',
-    CMS_API_URL: 'http://localhost:4000/api'
+    CMS_API_URL: 'http://cms.eliftech.com/api'
   },
   css: [
     { src: '@/assets/styles/index.scss', lang: 'scss' }

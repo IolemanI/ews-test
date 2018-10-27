@@ -85,6 +85,8 @@
 </template>
 
 <script>
+  const CMS_API = process.env.NODE_ENV == 'production' ? 'http://cms.eliftech.com/api' : 'http://localhost:4000/api';
+
   export default {
     data () {
       return {
@@ -103,7 +105,7 @@
         slide: 0,
         sliding: null,
         // ToDo: make route for image fetching
-        cmsHost: 'http://localhost:4000/api',
+        cmsHost: CMS_API,
         caseStudies: []
       }
     },

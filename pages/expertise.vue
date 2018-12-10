@@ -3,6 +3,9 @@
     <page-header :options="{ titleClass: '', title: 'Our expertise', cssClass: 'expertise' }"/>
     <section-ews73 />
     <section-ews77 />
+    <section-ews34 />
+    <section-ews36 />
+    <section-ews41 />
   </section>
 </template>
 
@@ -11,6 +14,9 @@
   import pageHeader from '~/components/sections/page-header/index.vue'
   import sectionEws73 from '~/components/sections/section-EWS-73/index.vue'
   import sectionEws77 from '~/components/sections/section-EWS-77/index.vue'
+  import sectionEws34 from '~/components/sections/section-EWS-34/index.vue'
+  import sectionEws36 from '~/components/sections/section-EWS-36/index.vue'
+  import sectionEws41 from '~/components/sections/section-EWS-41/index.vue'
 
   export default {
     head: {
@@ -33,7 +39,10 @@
     components: {
       pageHeader,
       sectionEws73,
-      sectionEws77
+      sectionEws77,
+      sectionEws34,
+      sectionEws36,
+      sectionEws41
     }
   }
 </script>

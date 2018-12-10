@@ -1,36 +1,38 @@
 <template>
   <section class="main">
     <page-header :options="{ titleClass: '', title: 'Our expertise', cssClass: 'expertise' }"/>
+    <section-ews73 />
   </section>
 </template>
 
 <script>
   import {getCaseStudies} from "../plugins/api-helper";
   import pageHeader from '~/components/sections/page-header/index.vue'
+  import sectionEws73 from '~/components/sections/section-EWS-73/index.vue'
 
+  export default {
+    head: {
+      title: 'ELIFTECH | Software Development | Our Expertise',
+      meta: [
+        { hid: 'description', name: 'description', content: 'Global tech service company that covers all aspects of custom software development using the latest technologies and frameworks' },
+        { hid: 'image', property:"og:image", content: '/data/social/facebook.jpg' },
+        { hid: 'keywords', name: 'keywords', content: 'software developer, offshore Software development, web app, iot, mobile development, mobile, Cloud Computing, Cloud Solutions, bid data, data science, ui, ux, golang, node js, react js, .net, javascript, angular, aws, azure, android, windows, ios, macos, mongo db, linux' }
+      ]
+    },
+    async mounted () {
+      if (this.$store.state.caseStudies.list.length === 0) {
+        let [caseStudies] = await Promise.all([
+          getCaseStudies(),
+        ])
 
-export default {
-  head: {
-    title: 'ELIFTECH | Software Development | Our Expertise',
-    meta: [
-      { hid: 'description', name: 'description', content: 'Global tech service company that covers all aspects of custom software development using the latest technologies and frameworks' },
-      { hid: 'image', property:"og:image", content: '/data/social/facebook.jpg' },
-      { hid: 'keywords', name: 'keywords', content: 'software developer, offshore Software development, web app, iot, mobile development, mobile, Cloud Computing, Cloud Solutions, bid data, data science, ui, ux, golang, node js, react js, .net, javascript, angular, aws, azure, android, windows, ios, macos, mongo db, linux' }
-    ]
-  },
-  async mounted () {
-    if (this.$store.state.caseStudies.list.length === 0) {
-      let [caseStudies] = await Promise.all([
-        getCaseStudies(),
-      ])
-
-      this.$store.commit('setCaseStudies', caseStudies)
+        this.$store.commit('setCaseStudies', caseStudies)
+      }
+    },
+    components: {
+      pageHeader,
+      sectionEws73
     }
-  },
-  components: {
-    pageHeader
   }
-}
 </script>
 
 <style scoped>

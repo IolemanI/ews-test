@@ -79,10 +79,9 @@
     },
     methods: {
       toggleExpertiseExpanded (index) {
-        this.expertises.forEach(item => {
-          item.expanded = false
+        this.expertises.forEach((item, i) => {
+          item.expanded = i === index ? !item.expanded : false
         })
-        this.expertises[index].expanded = !this.expertises[index].expanded
       }
     },
     mounted: function () {

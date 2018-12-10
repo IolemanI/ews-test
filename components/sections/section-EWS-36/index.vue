@@ -13,7 +13,7 @@
 
     </section>
 
-    <section class="" v-if="isCaseB">
+    <section class="case-b" v-if="isCaseB">
 
       <div class="container">
         <div class="section-icon"></div>
@@ -61,12 +61,9 @@
   export default {
     data () {
       return {
-        isCaseA: true,
-        isCaseB: false,
-        isCaseC: false,
-        isCaseD: false
       }
     },
+    props: ['isCaseA', 'isCaseB', 'isCaseC', 'isCaseD'],
     computed: {
 
     },
@@ -163,9 +160,18 @@
     padding-top: 3rem;
     padding-bottom: 9rem;
 
-    h2 {
-      margin-bottom: 1.5rem;
+    .container{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      h2{
+        text-align: center;
+        margin-bottom: 1.5rem;
+      }
     }
+
     .section-icon {
       width: 78px;
       height: 83px;

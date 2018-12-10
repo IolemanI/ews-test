@@ -4,7 +4,7 @@
     <section-ews73 />
     <section-ews77 />
     <section-ews34 />
-    <section-ews36 />
+    <section-ews36 :isCaseB="true"/>
     <section-ews41 />
   </section>
 </template>

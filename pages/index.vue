@@ -7,7 +7,7 @@
     <section-ews27/>
     <section-ews30/>
     <section-ews34/>
-    <section-ews36/>
+    <section-ews36 :isCaseA="true"/>
     <section-ews41/>
   </section>
 </template>

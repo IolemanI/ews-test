@@ -1,14 +1,14 @@
 <template>
-  <section :class="'page-header '+params.cssClass">
+  <section :class="'page-header '+options.cssClass">
     <div class="container">
-      <h1 :class="params.titleClass">{{params.title}}</h1>
+      <h1 :class="options.titleClass">{{options.title}}</h1>
     </div>
   </section>
 </template>
 
 <script>
   export default {
-    props: ['params']
+    props: ['options']
   }
 </script>
 

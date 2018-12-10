@@ -1,33 +1,34 @@
 <template>
-  <section class="container">
-    <div>
-      <app-logo/>
-      <h1 class="title">
-        corporative-site-layout
-      </h1>
-      <h2 class="subtitle">
-        Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
-      </div>
-    </div>
+  <section class="main">
+    <page-header :options="{ titleClass: '', title: 'Our expertise', cssClass: 'expertise' }"/>
   </section>
 </template>
 
 <script>
-import AppLogo from '~/components/AppLogo.vue'
+  import {getCaseStudies} from "../plugins/api-helper";
+  import pageHeader from '~/components/sections/page-header/index.vue'
+
 
 export default {
+  head: {
+    title: 'ELIFTECH | Software Development | Our Expertise',
+    meta: [
+      { hid: 'description', name: 'description', content: 'Global tech service company that covers all aspects of custom software development using the latest technologies and frameworks' },
+      { hid: 'image', property:"og:image", content: '/data/social/facebook.jpg' },
+      { hid: 'keywords', name: 'keywords', content: 'software developer, offshore Software development, web app, iot, mobile development, mobile, Cloud Computing, Cloud Solutions, bid data, data science, ui, ux, golang, node js, react js, .net, javascript, angular, aws, azure, android, windows, ios, macos, mongo db, linux' }
+    ]
+  },
+  async mounted () {
+    if (this.$store.state.caseStudies.list.length === 0) {
+      let [caseStudies] = await Promise.all([
+        getCaseStudies(),
+      ])
+
+      this.$store.commit('setCaseStudies', caseStudies)
+    }
+  },
   components: {
-    AppLogo
+    pageHeader
   }
 }
 </script>
